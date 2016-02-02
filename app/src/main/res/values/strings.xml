@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">TatvaApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="fab_transition">fab_maps</string>
+    <string name="organizers">Organizers:</string>
+
+    <string-array name="eventTitle">
+
+        <item>Corporate Conglomerate</item>
+        <item>Tech DC</item>
+        <item>Pattern Printing</item>
+        <item>Gaming</item>
+        <item>Product Launch</item>
+        <item>Tech Talk</item>
+        <item>Technogen</item>
+        <item>Circuit Debugging</item>
+        <item>JAM</item>
+        <item>Mock GRE</item>
+        <item>Mock Stock</item>
+        <item>Treasure Hunt</item>
+
+    </string-array>
+
+    <string-array name="eventTimings">
+
+        <item>Day 1\n9:30 – 10:00 AM to 12:00 – 12:30 PM</item>
+        <item>Day 1\n9:30 – 10:00 AM to 1:00 – 1:30 PM</item>
+        <item>Day 1\n9:30 – 10:00 AM to 1:00 – 1:30 PM</item>
+        <item>Day 1\n9:30 – 10:00 AM to 4:30 – 5:00 PM</item>
+        <item>Day 1\n9:30 – 10:00 AM to 5:00 – 5:30 PM</item>
+        <item>Day 1\n10:00 – 10:30 AM to 12:00 – 12:30 PM</item>
+        <item>Day 1\n10:00 – 10:30 AM to 1:00 – 1:30 PM</item>
+        <item>Day 1\n10:00 – 10:30 AM to 1:00 – 1:30 PM</item>
+        <item>Day 1\n10:00 – 10:30 AM to 1:00 – 1:30 PM</item>
+        <item>Day 1\n10:00 – 10:30 AM to 1:30 – 2:00 PM</item>
+        <item>Day 1\n1:30 – 2:00 AM to 2:00 – 2:30 PM</item>
+        <item>Day 1\n2:30 – 3:00 AM to 5:00 – 5:30 PM</item>
+
+    </string-array>
+
+    <string-array name="eventDesc">
+
+        <item>A one of a kind event providing a very realistic idea of how the corporate world works. Teams are divided into councils and assigned with companies accordingly. Giants and Start-ups need to make a symbiotic collaboration, bring out a product and present it. Number of rounds depends on the number of teams. Final round will require the teams selected from each council to face a jury which will decide the ultimate winner. </item>
+        <item>Dumb charades with a twist! Get your team members to guess which technical word you\'re trying to enact</item>
+        <item> </item>
+        <item>One of the most exciting events of TATVA 2k16. The rush of adrenaline and the nail biting finishes make this one of the most anticipated events. Playing some of the latest games along with some of the classics. Come one, Come all.</item>
+        <item> </item>
+        <item> </item>
+        <item>A Quiz that will test your IT and General knowledge trivia thoroughly. With innovative rounds, we promise to make this a technical quiz unlike any other. Will be held in two rounds – written Prelims and a final. 6 teams will make it to the finals from the prelims.</item>
+        <item>An event where you fix bugs in a circuit to tweak your way to victory!</item>
+        <item>Panel game in which contestants are asked to speak for one minute without hesitation,deviation or repetition of any subject that comes up.</item>
+        <item> </item>
+        <item>Mock Stock is an event that tries to emulate a stock market with real time fluctuation in the stock price and with news relating to the company. The companies that we have created are all unique and the companies’ details will be given to the contestants on the day of the event. This is one of the most sought out event in our fest. This event is an intra-college event and will be conducted in a lab with computers and internet.</item>
+        <item>Treasure hunt is the most exciting event of Tatva. Find the answers using series of clues which will be hidden inside the college campus. </item>
+
+    </string-array>
+
+    <string-array name="eventContact1">
+
+        <item>Keerthan</item>
+        <item>Vidya</item>
+        <item>Sugosh</item>
+        <item>Shrey</item>
+        <item>null</item>
+        <item>Sharanya</item>
+        <item>Varun</item>
+        <item>Karthik</item>
+        <item>Suhas</item>
+        <item>Anand</item>
+        <item>Sugosh</item>
+        <item>Kirthan</item>
+
+    </string-array>
+    <string-array name="eventContact2">
+
+        <item>Gauvrav</item>
+        <item>Stuthie</item>
+        <item>Dheeraj</item>
+        <item>null</item>
+        <item>null</item>
+        <item>Shwetha</item>
+        <item>Suraj</item>
+        <item>Vinayak</item>
+        <item>null</item>
+        <item>Vidya</item>
+        <item>Varun</item>
+        <item>Anasuya</item>
+
+    </string-array>
+
+    <string-array name="eventPhone1">
+
+        <item>9845041734</item>
+        <item>9535693620</item>
+        <item>null</item>
+        <item>null</item>
+        <item>null</item>
+        <item>null</item>
+        <item>8861469332</item>
+        <item>8861670102</item>
+        <item>9538946191</item>
+        <item>null</item>
+        <item>9880085543</item>
+        <item>8123995823</item>
+
+    </string-array>
+
+    <string-array name="eventPhone2">
+
+        <item>7795583007</item>
+        <item>9845772581</item>
+        <item>null</item>
+        <item>null</item>
+        <item>null</item>
+        <item>null</item>
+        <item>9886107706</item>
+        <item>8147162287</item>
+        <item>null</item>
+        <item>null</item>
+        <item>8861469332</item>
+        <item>9632508127</item>
+
+    </string-array>
+    <string name="title_activity_event">EventActivity</string>
+    <string name="title_activity_maps">Map</string>
+
+</resources>
