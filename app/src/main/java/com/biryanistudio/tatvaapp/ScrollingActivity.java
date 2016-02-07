@@ -4,14 +4,17 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,7 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -31,200 +34,198 @@ import java.util.Map;
 
 public class ScrollingActivity extends AppCompatActivity {
 
-	RecyclerView eventList;
-	FloatingActionButton fab;
+    RecyclerView eventList;
+    FloatingActionButton fab;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_scrolling);
-		Toolbar toolbarnew = ( Toolbar ) findViewById(R.id.toolbarnew);
-		setSupportActionBar(toolbarnew);
-		fab = ( FloatingActionButton ) findViewById(R.id.fab);
-		eventList = ( RecyclerView ) findViewById(R.id.eventList);
-		eventList.setHasFixedSize(true);
-		eventList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-		RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
-		recyclerViewAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
-			@Override
-			public void onItemClick(View view, int position) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_scrolling);
+        Toolbar toolbarnew = (Toolbar) findViewById(R.id.toolbarnew);
+        setSupportActionBar(toolbarnew);
+        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(getApplicationContext(), android.R.color.transparent));
+        collapsingToolbarLayout.setTitle("Tatva 2016");
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        eventList = (RecyclerView) findViewById(R.id.eventList);
+        eventList.setHasFixedSize(true);
+        eventList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        final RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
+        recyclerViewAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
 
-				if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ) {
-					ViewGroup linLayout = ( ViewGroup ) (( ViewGroup ) view).getChildAt(0);
-					View titleView = linLayout.getChildAt(0);
-					View timingsView = linLayout.getChildAt(1);
-					titleView.setTransitionName("title");
-					timingsView.setTransitionName("timings");
-					Intent intent = new Intent(ScrollingActivity.this, EventActivity.class);
-					ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ScrollingActivity.this, titleView, "title");
-					ActivityCompat.startActivity(ScrollingActivity.this, intent, optionsCompat.toBundle());
-				}
 
-			}
-		});
-		eventList.setAdapter(recyclerViewAdapter);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.setTransitionName("cardView");
+                    ViewGroup relativeLayout = (ViewGroup) ((ViewGroup) view).getChildAt(0);
+                    View poster = relativeLayout.getChildAt(0);
+                    poster.setTransitionName("eventPoster");
+                    ViewGroup linearLayout = (ViewGroup) relativeLayout.getChildAt(1);
+                    View title = linearLayout.getChildAt(0);
+                    title.setTransitionName("eventName");
+                    View timings = linearLayout.getChildAt(1);
+                    timings.setTransitionName("eventTimings");
 
-		fab.setVisibility(View.INVISIBLE);
-		if ( (ContextCompat.checkSelfPermission(ScrollingActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) ) {
-			ActivityCompat.requestPermissions(ScrollingActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
-		} else
-			fab.setVisibility(View.VISIBLE);
+                    Pair<View, String> cardPair = Pair.create(view, "cardView");
+                    Pair<View, String> posterPair = Pair.create(poster, "eventPoster");
+                    Pair<View, String> namePair = Pair.create(title, "eventName");
+                    Pair<View, String> timingsPair = Pair.create(timings, "eventTimings");
 
-		fab.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
+                    Intent intent = new Intent(ScrollingActivity.this, EventActivity.class);
+                    intent.putExtra("position", position);
+                    //noinspection unchecked
+                    ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ScrollingActivity.this, cardPair, posterPair, namePair, timingsPair);
+                    ActivityCompat.startActivity(ScrollingActivity.this, intent, optionsCompat.toBundle());
+                } else {
 
-				Intent intent = new Intent(ScrollingActivity.this, MapsActivity.class);
-				ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ScrollingActivity.this, fab, getResources().getString(R.string.fab_transition));
-				startActivity(intent, optionsCompat.toBundle());
-			}
-		});
+                    Intent intent = new Intent(ScrollingActivity.this, EventActivity.class);
+                    intent.putExtra("position", position);
+                    startActivity(intent);
+                }
 
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-		return true;
-	}
+            }
+        });
+        eventList.setAdapter(recyclerViewAdapter);
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
+        fab.setVisibility(View.INVISIBLE);
+        if ((ContextCompat.checkSelfPermission(ScrollingActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(ScrollingActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+        } else
+            fab.setVisibility(View.VISIBLE);
 
-		//noinspection SimplifiableIfStatement
-		if ( id == R.id.action_settings ) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-	@Override
-	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+                Intent intent = new Intent(ScrollingActivity.this, MapsActivity.class);
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ScrollingActivity.this, fab, getResources().getString(R.string.fab_transition));
+                startActivity(intent, optionsCompat.toBundle());
+            }
+        });
 
-		if ( requestCode == 123 ) {
-			Map<String, Integer> perms = new HashMap<>();
-			perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
-			for ( int i = 0; i < permissions.length; i++ )
-				perms.put(permissions[i], grantResults[i]);
-			if ( perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED )
-				fab.setVisibility(View.VISIBLE);
-			else {
-				fab.setVisibility(View.GONE);
-				Snackbar.make(findViewById(R.id.parentView), "Please allow location access to enable all features.", Snackbar.LENGTH_LONG)
-						.setAction("Allow", new View.OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								ActivityCompat.requestPermissions(ScrollingActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
-							}
-						})
-						.show();
-			}
-		}
-		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-	}
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        return id == R.id.action_about || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == 123) {
+            Map<String, Integer> perms = new HashMap<>();
+            perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
+            for (int i = 0; i < permissions.length; i++)
+                perms.put(permissions[i], grantResults[i]);
+            if (perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                fab.setVisibility(View.VISIBLE);
+            else {
+                fab.setVisibility(View.GONE);
+                Snackbar.make(findViewById(R.id.parentView), "Please allow location access to enable all features.", Snackbar.LENGTH_LONG)
+                        .setAction("Allow", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ActivityCompat.requestPermissions(ScrollingActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+                            }
+                        })
+                        .show();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
 
 }
 
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.EventViewHolder> {
 
-	Context mContext;
-	String[] eventTitles;
-	String[] eventTimings;
-	String[] eventDescs;
-	String[] eventContact1s;
-	String[] eventContact2s;
-	String[] eventPhone1s;
-	String[] eventPhone2s;
-	OnItemClickListener mItemClickListener;
+    Context mContext;
+    OnItemClickListener mItemClickListener;
+    String[][] eventOverview = new String[][]{
+            {"Circuit Debugging", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.circuitdebugging))},
+            {"Corporate Conglomerate", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
+            {"Gaming - PC", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
+            {"JAM", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
+            {"Mock GRE", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.mockgre))},
+            {"Mock Stock", "Day 1 - 1:30 PM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
+            {"Pattern Printing", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
+            {"Product Launch", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
+            {"Tech DC", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.techdc))},
+            {"Technogen", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
+            {"Tech Talk", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.techtalk))},
+            {"Treasure Hunt", "Day 1 - 2:30 PM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.treasurehunt))}};
 
-	public RecyclerViewAdapter(Context context) {
-		this.mContext = context;
-		eventTitles = this.mContext.getResources().getStringArray(R.array.eventTitle);
-		eventTimings = this.mContext.getResources().getStringArray(R.array.eventTimings);
-		eventDescs = this.mContext.getResources().getStringArray(R.array.eventDesc);
-		eventContact1s = this.mContext.getResources().getStringArray(R.array.eventContact1);
-		eventContact2s = this.mContext.getResources().getStringArray(R.array.eventContact2);
-		eventPhone1s = this.mContext.getResources().getStringArray(R.array.eventPhone1);
-		eventPhone2s = this.mContext.getResources().getStringArray(R.array.eventPhone2);
-	}
+    public RecyclerViewAdapter(Context context) {
+        this.mContext = context;
+    }
 
-	@Override
-	public RecyclerViewAdapter.EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		return new EventViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent, false));
-	}
+    @Override
+    public RecyclerViewAdapter.EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new EventViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item, parent, false));
+    }
 
-	@Override
-	public void onBindViewHolder(final RecyclerViewAdapter.EventViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(final RecyclerViewAdapter.EventViewHolder holder, int position) {
 
-		holder.eventTitle.setText(eventTitles[holder.getAdapterPosition()]);
-		holder.eventTiming.setText(eventTimings[holder.getAdapterPosition()]);
-		holder.eventDesc.setText(eventDescs[holder.getAdapterPosition()]);
-		holder.eventContact1.setText(eventContact1s[holder.getAdapterPosition()]);
-		holder.eventPhone1.setText(eventPhone1s[holder.getAdapterPosition()]);
-		holder.eventContact2.setText(eventContact2s[holder.getAdapterPosition()]);
-		holder.eventPhone2.setText(eventPhone2s[holder.getAdapterPosition()]);
+        holder.eventTitle.setText(eventOverview[position][0]);
+        holder.eventTiming.setText(eventOverview[position][1]);
+        holder.eventPoster.setImageDrawable(Drawable.createFromPath(eventOverview[position][2]));
 
-	}
+    }
 
-	@Override
-	public int getItemCount() {
-		return eventTitles.length;
-	}
+    @Override
+    public int getItemCount() {
+        return eventOverview.length;
+    }
 
-	@Override
-	public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-		super.onAttachedToRecyclerView(recyclerView);
-	}
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+    }
 
-	public class EventViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnClickListener {
+    public void SetOnItemClickListener(final OnItemClickListener itemClickListener) {
+        mItemClickListener = itemClickListener;
+    }
 
-		TextView eventTitle;
-		TextView eventTiming;
-		TextView eventDesc;
-		LinearLayout eventOrganizer;
-		TextView eventContact1;
-		TextView eventContact2;
-		TextView eventPhone1;
-		TextView eventPhone2;
-		CardView eventCard;
-		Context scrollingActivity;
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
 
-		public EventViewHolder(final View itemView) {
-			super(itemView);
-			this.eventTitle = ( TextView ) itemView.findViewById(R.id.title);
-			this.eventTiming = ( TextView ) itemView.findViewById(R.id.timings);
-			this.eventDesc = ( TextView ) itemView.findViewById(R.id.desc);
-			this.eventOrganizer = ( LinearLayout ) itemView.findViewById(R.id.organizers);
-			this.eventContact1 = ( TextView ) itemView.findViewById(R.id.contact1);
-			this.eventContact2 = ( TextView ) itemView.findViewById(R.id.contact2);
-			this.eventPhone1 = ( TextView ) itemView.findViewById(R.id.phone1);
-			this.eventPhone2 = ( TextView ) itemView.findViewById(R.id.phone2);
-			this.eventCard = ( CardView ) itemView.findViewById(R.id.card);
-			this.scrollingActivity = new ScrollingActivity();
-			itemView.setOnClickListener(this);
-		}
+    public class EventViewHolder extends RecyclerView.ViewHolder implements AdapterView.OnClickListener {
 
-		@Override
-		public void onClick(View v) {
-			if ( mItemClickListener != null ) {
-				mItemClickListener.onItemClick(v, getAdapterPosition());
-			}
-		}
+        TextView eventTitle;
+        TextView eventTiming;
+        ImageView eventPoster;
+        CardView eventCard;
 
-	}
 
-	public interface OnItemClickListener {
-		public void onItemClick(View view, int position);
-	}
+        public EventViewHolder(final View itemView) {
+            super(itemView);
+            this.eventTitle = (TextView) itemView.findViewById(R.id.title);
+            this.eventTiming = (TextView) itemView.findViewById(R.id.timings);
+            this.eventCard = (CardView) itemView.findViewById(R.id.card);
+            this.eventPoster = (ImageView) itemView.findViewById(R.id.poster);
+            itemView.setOnClickListener(this);
+        }
 
-	public void SetOnItemClickListener(final OnItemClickListener itemClickListener) {
-		mItemClickListener = itemClickListener;
-	}
+        @Override
+        public void onClick(View v) {
+            if (mItemClickListener != null) {
+                mItemClickListener.onItemClick(v, getAdapterPosition());
+            }
+        }
+
+    }
 
 }
