@@ -7,7 +7,6 @@
     android:layout_margin="@dimen/text_margin"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:paddingTop="8dp"
     card_view:cardCornerRadius="@dimen/cardview_default_radius"
     card_view:cardElevation="@dimen/cardview_default_elevation"
     card_view:cardPreventCornerOverlap="true"
@@ -16,7 +15,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/poster"
@@ -26,18 +25,18 @@
 
 
         <LinearLayout
+            android:id="@+id/eventDataHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/poster"
-            android:background="@color/colorBackground"
             android:orientation="vertical"
-            android:padding="@dimen/activity_vertical_margin">
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/text_margin"
                 android:textAllCaps="true"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
                 android:textStyle="bold" />
@@ -46,7 +45,6 @@
                 android:id="@+id/timings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/text_margin"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                 android:textStyle="italic" />
         </LinearLayout>

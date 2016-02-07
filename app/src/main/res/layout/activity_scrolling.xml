@@ -20,25 +20,23 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="@dimen/app_bar_height"
+            android:elevation="8dp"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="enterAlways|enterAlwaysCollapsed|scroll"
-            app:title="Tatva 2016"
             app:titleEnabled="true">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
-                android:src="@raw/tatva_logo"
-                app:layout_collapseMode="pin" />
+                android:src="@mipmap/ic_launcher"
+                app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbarnew"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="@dimen/app_bar_height"
+                android:elevation="8dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
