@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,13 +28,18 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ScrollingActivity extends AppCompatActivity {
 
     RecyclerView eventList;
     FloatingActionButton fab;
+    List<EventData> eventDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +50,12 @@ public class ScrollingActivity extends AppCompatActivity {
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(getApplicationContext(), android.R.color.transparent));
         collapsingToolbarLayout.setTitle("Tatva 2016");
+        initData();
         fab = (FloatingActionButton) findViewById(R.id.fab);
         eventList = (RecyclerView) findViewById(R.id.eventList);
-        eventList.setHasFixedSize(true);
+        //eventList.setHasFixedSize(true);
         eventList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        final RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(this);
+        final RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(eventDataList, getApplicationContext());
         recyclerViewAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -107,6 +112,22 @@ public class ScrollingActivity extends AppCompatActivity {
 
     }
 
+    private void initData() {
+        eventDataList = new ArrayList<>();
+        eventDataList.add(new EventData("Circuit Debugging", "Day 1 - 10:00 AM", R.drawable.circuitdebugging));
+        eventDataList.add(new EventData("Corporate Conglomerate", "Day 1 - 9:30 AM", R.drawable.main));
+        eventDataList.add(new EventData("Gaming - PC", "Day 1 - 9:30 AM", R.drawable.main));
+        eventDataList.add(new EventData("JAM", "Day 1 - 10:00 AM", R.drawable.main));
+        eventDataList.add(new EventData("Mock GRE", "Day 1 - 10:00 AM", R.drawable.mockgre));
+        eventDataList.add(new EventData("Mock Stock", "Day 1 - 1:30 PM", R.drawable.main));
+        eventDataList.add(new EventData("Pattern Printing", "Day 1 - 9:30 AM", R.drawable.main));
+        eventDataList.add(new EventData("Product Launch", "Day 1 - 9:30 AM", R.drawable.main));
+        eventDataList.add(new EventData("Tech DC", "Day 1 - 9:30 AM", R.drawable.techdc));
+        eventDataList.add(new EventData("Technogen", "Day 1 - 10:00 AM", R.drawable.main));
+        eventDataList.add(new EventData("Tech Talk", "Day 1 - 10:00 AM", R.drawable.techtalk));
+        eventDataList.add(new EventData("Treasure Hunt", "Day 1 - 2:30 PM", R.drawable.treasurehunt));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
@@ -150,25 +171,15 @@ public class ScrollingActivity extends AppCompatActivity {
 
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.EventViewHolder> {
 
-    Context mContext;
     OnItemClickListener mItemClickListener;
-    String[][] eventOverview = new String[][]{
-            {"Circuit Debugging", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.circuitdebugging))},
-            {"Corporate Conglomerate", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
-            {"Gaming - PC", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
-            {"JAM", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
-            {"Mock GRE", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.mockgre))},
-            {"Mock Stock", "Day 1 - 1:30 PM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
-            {"Pattern Printing", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
-            {"Product Launch", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
-            {"Tech DC", "Day 1 - 9:30 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.techdc))},
-            {"Technogen", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.main))},
-            {"Tech Talk", "Day 1 - 10:00 AM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.techtalk))},
-            {"Treasure Hunt", "Day 1 - 2:30 PM", String.valueOf(ContextCompat.getDrawable(mContext.getApplicationContext(), R.drawable.treasurehunt))}};
+    List<EventData> eventDataList;
+    Context mContext;
 
-    public RecyclerViewAdapter(Context context) {
+    RecyclerViewAdapter(List<EventData> eventDatas, Context context) {
+        this.eventDataList = eventDatas;
         this.mContext = context;
     }
+
 
     @Override
     public RecyclerViewAdapter.EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -178,15 +189,15 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Event
     @Override
     public void onBindViewHolder(final RecyclerViewAdapter.EventViewHolder holder, int position) {
 
-        holder.eventTitle.setText(eventOverview[position][0]);
-        holder.eventTiming.setText(eventOverview[position][1]);
-        holder.eventPoster.setImageDrawable(Drawable.createFromPath(eventOverview[position][2]));
+        holder.eventTitle.setText(this.eventDataList.get(position).eventName);
+        holder.eventTiming.setText(this.eventDataList.get(position).eventTimings);
+        Picasso.with(mContext).load(this.eventDataList.get(position).eventPosterId).into(holder.eventPoster);
 
     }
 
     @Override
     public int getItemCount() {
-        return eventOverview.length;
+        return eventDataList.size();
     }
 
     @Override
@@ -226,6 +237,19 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Event
             }
         }
 
+    }
+}
+
+class EventData {
+
+    String eventName;
+    String eventTimings;
+    int eventPosterId;
+
+    EventData(String title, String time, int id) {
+        this.eventName = title;
+        this.eventTimings = time;
+        this.eventPosterId = id;
     }
 
 }
