@@ -30,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -67,36 +68,50 @@ public class ScrollingActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View view, int position) {
 
+                Intent intent = new Intent(ScrollingActivity.this, EventActivity.class);
+                int posterid = eventDetailDataList.get(position).posterid;
+                String name = eventDetailDataList.get(position).name;
+                String day = eventDetailDataList.get(position).day;
+                String time = eventDetailDataList.get(position).time;
+                String location = eventDetailDataList.get(position).location;
+                String description = eventDetailDataList.get(position).description;
+                String teammembers = eventDetailDataList.get(position).teammembers;
+                String rate = eventDetailDataList.get(position).rate;
+                String firstPrize = eventDetailDataList.get(position).firstPrize;
+                String secondPrize = eventDetailDataList.get(position).secondPrize;
+                String organizer1 = eventDetailDataList.get(position).organizer1;
+                String organizer2 = eventDetailDataList.get(position).organizer2;
+                String phone1 = eventDetailDataList.get(position).phone1;
+                String phone2 = eventDetailDataList.get(position).phone2;
+                intent.putExtra("posterid", posterid);
+                intent.putExtra("name", name);
+                intent.putExtra("day", day);
+                intent.putExtra("time", time);
+                intent.putExtra("location", location);
+                intent.putExtra("description", description);
+                intent.putExtra("teammembers", teammembers);
+                intent.putExtra("rate", rate);
+                intent.putExtra("firstPrize", firstPrize);
+                intent.putExtra("secondPrize", secondPrize);
+                intent.putExtra("organizer1", organizer1);
+                intent.putExtra("organizer2", organizer2);
+                intent.putExtra("phone1", phone1);
+                intent.putExtra("phone2", phone2);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    view.setTransitionName("cardView");
-                    ViewGroup relativeLayout = (ViewGroup) ((ViewGroup) view).getChildAt(0);
-                    View poster = relativeLayout.getChildAt(0);
-                    poster.setTransitionName("eventPoster");
-                    ViewGroup linearLayout = (ViewGroup) relativeLayout.getChildAt(1);
-                    View title = linearLayout.getChildAt(0);
-                    title.setTransitionName("eventName");
-                    View timings = linearLayout.getChildAt(1);
-                    timings.setTransitionName("eventTimings");
+                CardView cardView = (CardView) view;
+                RelativeLayout relativeLayout = (RelativeLayout) cardView.getChildAt(0);
+                ImageView imageView = (ImageView) relativeLayout.getChildAt(0);
+                LinearLayout linearLayout = (LinearLayout) relativeLayout.getChildAt(1);
+                TextView titleText = (TextView) linearLayout.getChildAt(0);
+                TextView timingsText = (TextView) linearLayout.getChildAt(1);
 
-                    Pair<View, String> cardPair = Pair.create(view, "cardView");
-                    Pair<View, String> posterPair = Pair.create(poster, "eventPoster");
-                    Pair<View, String> namePair = Pair.create(title, "eventName");
-                    Pair<View, String> timingsPair = Pair.create(timings, "eventTimings");
+                Pair<View, String> cardPair = Pair.create((View) cardView, "eventCardHolder");
+                Pair<View, String> posterPair = Pair.create((View) imageView, "eventPosterHolder");
+                Pair<View, String> titlePair = Pair.create((View) titleText, "eventNameHolder");
+                Pair<View, String> timingPair = Pair.create((View) timingsText, "eventTimingHolder");
 
-                    Intent intent = new Intent(ScrollingActivity.this, EventActivity.class);
-                    intent.putExtra("position", position);
-                    //noinspection unchecked
-                    ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ScrollingActivity.this, cardPair, posterPair, namePair, timingsPair);
-                    ActivityCompat.startActivity(ScrollingActivity.this, intent, optionsCompat.toBundle());
-                } else {
-
-                    Intent intent = new Intent(ScrollingActivity.this, EventActivity.class);
-                    intent.putExtra("position", position);
-                    startActivity(intent);
-                }
-
-
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ScrollingActivity.this, cardPair, posterPair, titlePair, timingPair);
+                ActivityCompat.startActivity(ScrollingActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
         eventList.setAdapter(recyclerViewAdapter);
@@ -117,6 +132,79 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setColors() {
+
+        Palette.from(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)).generate(new Palette.PaletteAsyncListener() {
+            @Override
+            public void onGenerated(Palette palette) {
+                Palette.Swatch vibrant = palette.getVibrantSwatch();
+                Palette.Swatch vibrantDark = palette.getDarkVibrantSwatch();
+                Palette.Swatch mutedLight = palette.getLightMutedSwatch();
+
+                if (vibrant != null) {
+                    collapsingToolbarLayout.setBackgroundColor(vibrant.getRgb());
+                    collapsingToolbarLayout.setCollapsedTitleTextColor(vibrant.getTitleTextColor());
+                }
+
+                if (vibrantDark != null) {
+                    collapsingToolbarLayout.setExpandedTitleColor(vibrantDark.getTitleTextColor());
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        getWindow().setNavigationBarColor(vibrantDark.getRgb());
+                        getWindow().setStatusBarColor(vibrantDark.getRgb());
+                    }
+                }
+
+                if (mutedLight != null) {
+                    eventList.setBackgroundColor(mutedLight.getRgb());
+                }
+
+            }
+        });
+
+    }
+
+    private Palette.Swatch getColor(Bitmap bitmap) {
+        return Palette.from(bitmap).generate().getLightVibrantSwatch();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        return id == R.id.action_about || super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == 123) {
+            Map<String, Integer> perms = new HashMap<>();
+            perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
+            for (int i = 0; i < permissions.length; i++)
+                perms.put(permissions[i], grantResults[i]);
+            if (perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                fab.setVisibility(View.VISIBLE);
+            else {
+                fab.setVisibility(View.GONE);
+                Snackbar.make(findViewById(R.id.parentView), "Please allow location access to enable all features.", Snackbar.LENGTH_LONG)
+                        .setAction("Allow", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ActivityCompat.requestPermissions(ScrollingActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+                            }
+                        })
+                        .show();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void initData() {
@@ -205,7 +293,6 @@ public class ScrollingActivity extends AppCompatActivity {
         String productLaunchdesc = "null";
         String mockGREdesc = "Planning to chase your dreams? Come take a step forward and give these challenging exams a shot to know where you stand! Tag your friends along to make it more competitive! Exciting cash prizes await the winners!";
         String patternPrintdesc = "A Team of 2 will have to create a hackerrank profile.Teams will be provided with a set of patterns and their objective is to code in any language of their choice to obtain that pattern as output.";
-        String tRDPLdesc = "null";
         String eETM2desc = "An Entertainment Quiz. TV shows,music and movies. By this, we solemly swear that we're upto no good. Why? Cause this is like a box of chocolates. You never know what you're gonna get. For this is our design. So you'd better kick your can all over the place.";
         String essencedesc = "Petrol Heads Unite!! This is a quiz about all things fast with four wheels. Test your speed and handling with 2 rounds - Prelims and a 6-team finals.";
         String kartitdesc = "The participants will be given a set of product images from an e-commerce website. They will have to search the product on flipkart.com using the image given to them as reference.";
@@ -472,7 +559,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String kartito2 = "Meghana";
         String codingo2 = "null";
         String potpourrio2 = "null";
-        String cryptorigo2 = "Sasrika";
+        String cryptorigo2 = "Harshapriya";
         String googleito2 = "Akshatha";
         String chuckglidero2 = "Aditi";
         String photographyo2 = "Aakaash";
@@ -484,59 +571,59 @@ public class ScrollingActivity extends AppCompatActivity {
 
         //Phone 1
 
-        String techdcp1 = "null";
-        String technogenp1 = "null";
-        String circuitdebugp1 = "null";
-        String corcongp1 = "null";
-        String mockstockp1 = "null";
-        String treasurehuntp1 = "null";
-        String techjamp1 = "null";
+        String techdcp1 = "9535693620";
+        String technogenp1 = "8861469332";
+        String circuitdebugp1 = "8861670102";
+        String corcongp1 = "9845041734";
+        String mockstockp1 = "9880085543";
+        String treasurehuntp1 = "8123995823";
+        String techjamp1 = "9538946191";
         String techtalkp1 = "null";
         String gamingp1 = "null";
         String productlaunchp1 = "null";
-        String mockgrep1 = "null";
-        String patternprintp1 = "null";
+        String mockgrep1 = "9916438368";
+        String patternprintp1 = "9880085543";
         String eetm2p1 = "null";
-        String essencep1 = "null";
+        String essencep1 = "9035211489";
         String kartitp1 = "null";
-        String codingp1 = "null";
+        String codingp1 = "9880085543";
         String potpourrip1 = "null";
-        String cryptorigp1 = "null";
+        String cryptorigp1 = "9035184719";
         String googleitp1 = "null";
         String chuckgliderp1 = "null";
         String photographyp1 = "null";
         String hirefirep1 = "null";
-        String rubikscubep1 = "null";
-        String bbroyp1 = "null";
+        String rubikscubep1 = "8197526224";
+        String bbroyp1 = "9482480881";
         String trdplp1 = "null";
         String hogathonp1 = "null";
 
         //Phone 2
 
-        String techdcp2 = "null";
-        String technogenp2 = "null";
-        String circuitdebugp2 = "null";
-        String corcongp2 = "null";
-        String mockstockp2 = "null";
-        String treasurehuntp2 = "null";
-        String techjamp2 = "null";
+        String techdcp2 = "9845772581";
+        String technogenp2 = "9886107706";
+        String circuitdebugp2 = "8147162287";
+        String corcongp2 = "7795583007";
+        String mockstockp2 = "8861469332";
+        String treasurehuntp2 = "9632508127";
+        String techjamp2 = "8970970532";
         String techtalkp2 = "null";
         String gamingp2 = "null";
         String productlaunchp2 = "null";
         String mockgrep2 = "null";
-        String patternprintp2 = "null";
+        String patternprintp2 = "9483918712";
         String eetm2p2 = "null";
-        String essencep2 = "null";
+        String essencep2 = "9538213512";
         String kartitp2 = "null";
         String codingp2 = "null";
         String potpourrip2 = "null";
-        String cryptorigp2 = "null";
+        String cryptorigp2 = "9986956094";
         String googleitp2 = "null";
         String chuckgliderp2 = "null";
-        String photographyp2 = "null";
+        String photographyp2 = "9902512464";
         String hirefirep2 = "null";
         String rubikscubep2 = "null";
-        String bbroyp2 = "null";
+        String bbroyp2 = "9880783959";
         String trdplp2 = "null";
         String hogathonp2 = "null";
 
@@ -582,7 +669,7 @@ public class ScrollingActivity extends AppCompatActivity {
         eventDetailDataList.add(new EventDetailData(patternprintpi, patternprintname, patternprintday, patternprinttime, patternprintloc, patternPrintdesc, patternprinttm, patternprinttr, patternprintfp, patternprintsp, patternprinto1, patternprinto2, patternprintp1, patternprintp2));
         eventDetailDataList.add(new EventDetailData(productlaunchpi, productLaunchname, productlaunchday, productlaunchtime, productlaunchloc, productLaunchdesc, productlaunchtm, productlaunchtr, productlaunchfp, productlaunchsp, productlauncho1, productlauncho2, productlaunchp1, productlaunchp2));
         eventDetailDataList.add(new EventDetailData(techdcpi, techDCname, techdcday, techdctime, techdcloc, techDCdesc, techdctm, techdctr, techdcfp, techdcsp, techdco1, techdco2, techdcp1, techdcp2));
-        eventDetailDataList.add(new EventDetailData(technogenpi, technogenname, technogenday, technogentime, technogenloc, technogendesc, techdctm, technogentr, technogenfp, technogensp, technogeno1, technogeno2, technogenp1, technogenp2));
+        eventDetailDataList.add(new EventDetailData(technogenpi, technogenname, technogenday, technogentime, technogenloc, technogendesc, technogentm, technogentr, technogenfp, technogensp, technogeno1, technogeno2, technogenp1, technogenp2));
         eventDetailDataList.add(new EventDetailData(techtalkpi, techTalkname, techtalkday, techtalktime, techtalkloc, techTalkdesc, techtalktm, techtalktr, techtalkfp, techtalksp, techtalko1, techtalko2, techtalkp1, techtalkp2));
         eventDetailDataList.add(new EventDetailData(treasurehuntpi, treasurehuntname, treasurehuntday, treasurehunttime, treasurehuntloc, treasureHuntdesc, treasurehunttm, treasurehunttr, treasurehuntfp, treasurehuntsp, treasurehunto1, treasurehunto2, treasurehuntp1, treasurehuntp2));
 
@@ -602,83 +689,10 @@ public class ScrollingActivity extends AppCompatActivity {
         eventDetailDataList.add(new EventDetailData(hirefirepi, hirefirename, hirefireday, hirefiretime, hirefireloc, hireFiredesc, hirefiretm, hirefiretr, hirefirefp, hirefiresp, hirefireo1, hirefireo2, hirefirep1, hirefirep2));
         eventDetailDataList.add(new EventDetailData(hogathonpi, hogathonname, hogathonday, hogathontime, hogathonloc, hogathondesc, hogathontm, hogathontr, hogathonfp, hogathonsp, hogathono1, hogathono2, hogathonp1, hogathonp2));
         eventDetailDataList.add(new EventDetailData(kartitpi, kartitname, kartitday, kartittime, kartitloc, kartitdesc, kartittm, kartittr, kartitfp, kartitsp, kartito1, kartito2, kartitp1, kartitp2));
-        eventDetailDataList.add(new EventDetailData(photographypi, photographyname, photographyday, photographytime, photographyloc, photographydesc, photographytm, photographytr, photographyfp, photographysp, photographyo1, potpourrio2, photographyp1, photographyp2));
+        eventDetailDataList.add(new EventDetailData(photographypi, photographyname, photographyday, photographytime, photographyloc, photographydesc, photographytm, photographytr, photographyfp, photographysp, photographyo1, photographyo2, photographyp1, photographyp2));
         eventDetailDataList.add(new EventDetailData(potpourripi, potpourriname, potpourriday, potpourritime, potpourriloc, potpourridesc, potpourritm, potpourritr, potpourrifp, potpourrisp, potpourrio1, potpourrio2, potpourrip1, potpourrip2));
         eventDetailDataList.add(new EventDetailData(rubikscubepi, rubikscubename, rubikscubdeday, rubikscubetime, rubikscubeloc, rubiksCubedesc, rubikscubetm, rubikscubetr, rubikscubefp, rubikscubesp, rubikscubeo1, rubikscubeo2, rubikscubep1, rubikscubep2));
 
-    }
-
-    private void setColors() {
-
-        Palette.from(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher)).generate(new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(Palette palette) {
-                Palette.Swatch vibrant = palette.getVibrantSwatch();
-                Palette.Swatch vibrantDark = palette.getDarkVibrantSwatch();
-                Palette.Swatch mutedLight = palette.getLightMutedSwatch();
-
-                if (vibrant != null) {
-                    collapsingToolbarLayout.setBackgroundColor(vibrant.getRgb());
-                    collapsingToolbarLayout.setCollapsedTitleTextColor(vibrant.getTitleTextColor());
-                }
-
-                if (vibrantDark != null) {
-                    collapsingToolbarLayout.setExpandedTitleColor(vibrantDark.getTitleTextColor());
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setNavigationBarColor(vibrantDark.getRgb());
-                        getWindow().setStatusBarColor(vibrantDark.getRgb());
-                    }
-                }
-
-                if (mutedLight != null) {
-                    eventList.setBackgroundColor(mutedLight.getRgb());
-                }
-
-            }
-        });
-
-    }
-
-    private Palette.Swatch getColor(Bitmap bitmap) {
-        return Palette.from(bitmap).generate().getLightVibrantSwatch();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_scrolling, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        return id == R.id.action_about || super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
-        if (requestCode == 123) {
-            Map<String, Integer> perms = new HashMap<>();
-            perms.put(Manifest.permission.ACCESS_FINE_LOCATION, PackageManager.PERMISSION_GRANTED);
-            for (int i = 0; i < permissions.length; i++)
-                perms.put(permissions[i], grantResults[i]);
-            if (perms.get(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                fab.setVisibility(View.VISIBLE);
-            else {
-                fab.setVisibility(View.GONE);
-                Snackbar.make(findViewById(R.id.parentView), "Please allow location access to enable all features.", Snackbar.LENGTH_LONG)
-                        .setAction("Allow", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                ActivityCompat.requestPermissions(ScrollingActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 123);
-                            }
-                        })
-                        .show();
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
 
@@ -811,4 +825,6 @@ class EventDetailData {
         this.phone1 = phone1;
         this.phone2 = phone2;
     }
+
+
 }

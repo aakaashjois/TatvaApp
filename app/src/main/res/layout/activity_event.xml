@@ -11,30 +11,39 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
+        android:elevation="4dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+            android:id="@+id/toolbar_layout_event"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="exitUntilCollapsed">
+            app:layout_scrollFlags="enterAlways|enterAlwaysCollapsed|scroll"
+            app:titleEnabled="true">
 
             <ImageView
+                android:id="@+id/eventPoster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:elevation="4dp"
                 android:scaleType="fitCenter"
-                android:transitionName="eventPoster" />
+                android:src="@mipmap/ic_launcher"
+                android:transitionName="eventPosterHolder"
+                app:layout_collapseMode="pin" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/eventName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:textAppearance="@android:style/TextAppearance.DeviceDefault.SearchResult.Title"
-                android:transitionName="eventName" />
+                android:layout_margin="@dimen/activity_vertical_margin"
+                android:elevation="4dp"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+                android:textStyle="bold"
+                android:transitionName="eventNameHolder" />
+
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

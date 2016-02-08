@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_navigation_white_24dp"
+        android:src="@drawable/navigation"
         android:transitionName="@string/fab_transition"/>
 
     <fragment android:id="@+id/map"
