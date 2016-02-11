@@ -34,6 +34,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +59,8 @@ public class ScrollingActivity extends AppCompatActivity {
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         initData();
         initDetailData();
-        setColors();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            setColors();
         fab = (FloatingActionButton) findViewById(R.id.fab);
         eventList = (RecyclerView) findViewById(R.id.eventList);
         eventList.setHasFixedSize(true);
@@ -165,10 +167,6 @@ public class ScrollingActivity extends AppCompatActivity {
 
     }
 
-    private Palette.Swatch getColor(Bitmap bitmap) {
-        return Palette.from(bitmap).generate().getLightVibrantSwatch();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
@@ -212,38 +210,39 @@ public class ScrollingActivity extends AppCompatActivity {
 
         //Day 1
 
-        eventDataList.add(new EventData("Circuit Debugging", "Day 1 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Corporate Conglomerate", "Day 1 - 9:30 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Gaming", "Both Days  - 9:30 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Tech JAM", "Day 1 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Mock GRE", "Day 1 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Mock Stock", "Day 1 - 1:30 PM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Pattern Print", "Day 1 - 9:30 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Product Launch", "Day 1 - 9:30 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Tech DC", "Day 1 - 9:30 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Technogen", "Day 1 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Tech Talk", "Day 1 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Treasure Hunt", "Day 1 - 2:30 PM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
+        eventDataList.add(new EventData("Circuit Debugging", "Day 1 - 10:00 AM", R.drawable.circuit_debugging));
+        eventDataList.add(new EventData("Corporate Conglomerate", "Day 1 - 9:30 AM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Gaming PC", "Day 1  - 9:30 AM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Tech JAM", "Day 1 - 10:00 AM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Mock GRE", "Day 1 - 10:00 AM", R.drawable.mock_gre));
+        eventDataList.add(new EventData("Mock Stock", "Day 1 - 1:30 PM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Pattern Print", "Day 1 - 9:30 AM", R.drawable.pattern_print));
+        eventDataList.add(new EventData("Product Launch", "Day 1 - 9:30 AM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Tech DC", "Day 1 - 9:30 AM", R.drawable.tech_dc));
+        eventDataList.add(new EventData("Wit'Wiki'", "Day 1 - 10:00 AM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Tech Talk", "Day 1 - 10:00 AM", R.drawable.tech_talk));
+        eventDataList.add(new EventData("Treasure Hunt", "Day 1 - 2:30 PM", R.drawable.treasure_hunt));
 
         //Special
 
-        eventDataList.add(new EventData("The Raghu Dixit Project Live", "Day 2 - 6:00 PM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
+        eventDataList.add(new EventData("The Raghu Dixit Project Live", "Day 2 - 6:00 PM", R.mipmap.ic_launcher));
 
         //Day 2
 
-        eventDataList.add(new EventData("BB Roy", "Day 2 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Chuck Glider", "Day 2 - 9:30 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Coding", "Day 2 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Crypt-O-Rig", "Day 2 - 1:00 PM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("E=TM2", "Day 2 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Essence", "Day 2 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Google-it", "Day 2 - 3:00 PM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Hire/Fire", "Day 2 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Hogathon", "Day 2 - 10:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Kart-it", "Day 2 - 2:00 PM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Photography", "Day 2 - 9:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Potpourri", "Day 2 - 9:00 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
-        eventDataList.add(new EventData("Cube On 2016", "Day 2 - 9:30 AM", R.mipmap.ic_launcher, getColor(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))));
+        eventDataList.add(new EventData("BB Roy", "Day 2 - 10:00 AM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Chuck Glider", "Day 2 - 9:30 AM", R.drawable.chuck_glider));
+        eventDataList.add(new EventData("Coding", "Day 2 - 10:00 AM", R.drawable.coding));
+        eventDataList.add(new EventData("Crypt-O-Rig", "Day 2 - 1:00 PM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("E=TM2", "Day 2 - 10:00 AM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Essence", "Day 2 - 10:00 AM", R.drawable.essence));
+        eventDataList.add(new EventData("Gaming Console", "Day 2  - 9:30 AM", R.mipmap.ic_launcher));
+        eventDataList.add(new EventData("Google-it", "Day 2 - 3:00 PM", R.drawable.google_it));
+        eventDataList.add(new EventData("Hire/Fire", "Day 2 - 10:00 AM", R.drawable.hire_fire));
+        eventDataList.add(new EventData("Hogathon", "Day 2 - 10:00 AM", R.drawable.hogathon));
+        eventDataList.add(new EventData("Kart-it", "Day 2 - 2:00 PM", R.drawable.kart_it));
+        eventDataList.add(new EventData("Photography", "Day 2 - 9:00 AM", R.drawable.photography));
+        eventDataList.add(new EventData("Potpourri", "Day 2 - 9:00 AM", R.drawable.potpourri));
+        eventDataList.add(new EventData("Cube On 2016", "Day 2 - 9:30 AM", R.drawable.cube_on));
     }
 
     private void initDetailData() {
@@ -253,14 +252,14 @@ public class ScrollingActivity extends AppCompatActivity {
         //Names
 
         String techDCname = "Tech DC";
-        String technogenname = "Technogen";
+        String technogenname = "Wit'Wiki'";
         String circuitDebugname = "Circuit Debugging";
         String corcongname = "Corporate Conglomerate";
         String mockStockname = "Mock Stock";
         String treasurehuntname = "Treasure Hunt";
         String techjamname = "Tech JAM";
         String techTalkname = "Tech Talk";
-        String gamingname = "Gaming";
+        String gamingPCname = "Gaming PC";
         String productLaunchname = "Product Launch";
         String mockGREname = "Mock GRE";
         String patternprintname = "Pattern Print";
@@ -278,35 +277,37 @@ public class ScrollingActivity extends AppCompatActivity {
         String trdplname = "The Raghu Dixit Prooject Live";
         String bbroyname = "BB Roy";
         String hogathonname = "Hogathon";
+        String gamingConsolename = "Gaming Console";
 
         //Descriptions
 
         String techDCdesc = "Dumb charades with a twist! Get your team members to guess words you use everyday in your classrooms and labs - and more!";
         String technogendesc = "A Quiz that will test your IT & General Knowledge trivia thoroughly. With innovative rounds, we promise to make this a technical quiz unlike any other. Will be held in two rounds – written Prelims and a final. 6 teams will make it to the finals from the prelims.";
-        String circuitDebugdesc = "Here it is, an opportunity to showcase your circuit debugging skills and become the “ter-bug-ator” by fixing simple bugs in a circuit, thus tweaking your way to victory. It's time to brush up on your electronics skills, because the event will have basic and easy rounds that will not require you to scratch that pretty brain of yours!";
-        String corporateCongdesc = "A one-of-a-kind event providing a very realistic idea of how the corporate world works. Teams are divided into councils and assigned with companies accordingly. Giants and Start-ups need to form a symbiotic collaboration, bring out a product and present it.The final round will require the selected teams to face a jury which will decide the ultimate winner.";
-        String mockStockdesc = "Mock Stock is an event that tries to emulate a stock market with real time fluctuations in the stock price and with news relating to the company. The original companies that we've created and the companies’ details will be given to the contestants on the day of the event.";
-        String treasureHuntdesc = "Captain Jack Sparrow, The Famous Five, Indiana Jones and Robert Langdon all have one thing in common - an uncommon curiosity for hidden treasures! If you're the kind that likes solving clues and finding Easter Eggs (wink wink!) and if you think you know BNMIT well enough (or don't) you should totally take part in this Around-the-campus-in-60-minutes Amazing Race!";
-        String techTalkdesc = "null";
-        String techjamMdesc = "A panel game in which the contestants are challenged to speak for one minute without hesitation, deviation or repetition on any subject that comes up on the cards. The second round is Air Crash, in which contestants will be assigned fun sci-fi characters that they would be defending.";
-        String gamingdesc = "One of the most exciting events of Tatva! The rush of adrenaline and the nail-biting finishes make this one of the most anticipated events. We have some of the latest games along with some of the classics. Come one, Come all.";
+        String circuitDebugdesc = "Become the “ter-bug-ator” ! This an opportunity to showcase your circuit debugging skills by fixing simple bugs in a circuit, thus tweaking your way to victory. It's time to brush up on your electronics skills, because the event will have basic and easy rounds that will not require you to scratch that pretty brain of yours!";
+        String corporateCongdesc = "A collaboration between David and Goliath! CC is a one-of-a-kind event providing a very realistic idea of how the corporate world works. Teams are divided into councils and assigned with companies accordingly. Giants and Start-ups need to form a symbiotic collaboration, bring out a product and present it.The final round will require the selected teams to face a jury which will decide the ultimate winner. ";
+        String mockStockdesc = "Are you the Wolf of Wall Street? We've got here an event that tries to emulate a stock market with real time fluctuations in the stock price and news relating to the company. The original companies that we've created and the companies’ details will be given to the contestants on the day of the event.";
+        String treasureHuntdesc = "Captain Jack Sparrow, The Famous Five, Indiana Jones and Robert Langdon all have one thing in common - an uncommon curiosity for hidden treasures! If you're the kind that likes solving clues and finding Easter Eggs (wink wink!) and if you think you know BNMIT well enough (or don't) you should totally take part in this Around-the-campus-in-60-minutes Amazing Race, crafted exclusively for BNM students!";
+        String techTalkdesc = "A talk to remember. Participants would be given a published paper in a domain of their choice - EC, CS or Mechanical - a few days before the event and they would have to prepare for it and present it. Basically, participants would be presenting published papers, unless they have published papers of their own, in which case we would be more than happy to let them present it!";
+        String techjamMdesc = "For people who can rant about Android L and the likes! A panel game in which the contestants are challenged to speak for one minute without hesitation, deviation or repetition of any subject that comes up. The final round is Air Crash, in which contestants will be assigned fun sci-fi characters and will be given their details, and participants would have to justify their survival.";
+        String gamingPCdesc = "One of the most exciting events of Tatva! The rush of adrenaline and the nail-biting finishes make this one of the most anticipated events. We have classic PC games like Call of Duty, Counter Strike and Need for Speed. Come one, Come all.";
         String productLaunchdesc = "null";
         String mockGREdesc = "Planning to chase your dreams? Come take a step forward and give these challenging exams a shot to know where you stand! Tag your friends along to make it more competitive! Exciting cash prizes await the winners!";
-        String patternPrintdesc = "A Team of 2 will have to create a hackerrank profile.Teams will be provided with a set of patterns and their objective is to code in any language of their choice to obtain that pattern as output.";
-        String eETM2desc = "An Entertainment Quiz. TV shows,music and movies. By this, we solemly swear that we're upto no good. Why? Cause this is like a box of chocolates. You never know what you're gonna get. For this is our design. So you'd better kick your can all over the place.";
-        String essencedesc = "Petrol Heads Unite!! This is a quiz about all things fast with four wheels. Test your speed and handling with 2 rounds - Prelims and a 6-team finals.";
-        String kartitdesc = "The participants will be given a set of product images from an e-commerce website. They will have to search the product on flipkart.com using the image given to them as reference.";
-        String codingdesc = "In the first round, teams will be given 30 questions (Questions relating to DS and Programming Languages) to solve in 1 hour. In the second round, there will be problem statements provided for which teams have to code to solve it. They can code in any language of their choice. It will be conducted on Hackerrank platform.";
-        String potpourridesc = "Dumb Charades, Pictionary and everything else that you do to pass time - think you're good at it? Think you can name famous movies and TV Shows and personalities off the top of your head? Then why not make some money out of it? Tag your friends along and register for a super fun event!";
-        String cryptORigdesc = "Sherlock Holmes or Hercule Poirot - is one of them your detective heroes? Do you find it amusing to solve perplexing mysteries? If your answer is yes, why wait?! Crypt-o-rig is a mind boggling event(literally!) where the participants are required to solve the black box mystery and they win a clue to the final round with their detective skills.Only here, it's an exciting walk through circuits and codes!";
-        String googleItdesc = "null";
-        String chuckGliderdesc = "Chuck gliding. Learn, build and fly your own chuck glider. You will only need your enthusiasm. All materials will be provided along with a workshop.";
-        String photographydesc = "The participants will be given a topic on the day of the event and they will have to click a picture using DSLR/Digital camera and submit within 2.5 to 3 hours. No post processing will be allowed.";
-        String hireFiredesc = "Participants will undergo a group discussion round and will have to clear it following which they will face judges in the personal interview round.";
-        String rubiksCubedesc = "Cube On 2016, the first ever speed cubing event in Tatva 2016, with WCA recognition. Cubers from all over the country are welcome to showcase your speed cubing skills at this breathtaking event. Age is never a limitation to challenge the world of cubers here. If you're one of those cubers who can solve the Rubik's Cube with easy and are willing to prove your talent by competing with the best cubers in India then join us at Cube On 2016.";
-        String bbRoydesc = "The event deals with the Colour Coding of Resistors. Anyone with the basic knowledge of resistors (and not just electrical or electronics students) can nail the prize! So come and have fun with the electronic components!";
+        String patternPrintdesc = "Print away! Teams will have to create a HackerRank profile. They will be provided with a set of patterns which they have to code in any language of their choice to obtain that pattern as the output.";
+        String eETM2desc = "An Entertainment Quiz. TV shows, music and movies. By this, we solemly swear that we're upto no good. Why? Cause this is like a box of chocolates. You never know what you're gonna get. For this is our design. So you'd better kick your can all over the place.";
+        String essencedesc = "Petrol Heads Unite! This is a quiz about all things fast with four wheels. Test your speed and handling with 2 rounds - Prelims and a finals consisting of 6 teams.";
+        String kartitdesc = "Want it? KART IT! The participants will be given a set of product images from an e-commerce website. They will have to search for the product on Flipkart using the image given as reference.";
+        String codingdesc = "Attention Coders! Here's a chance for you to test your skills! The first round,has 30 questions to be answered. The second round will have problem statements for which teams have to code to solve it. You can code in any language, as long as you get an output!";
+        String potpourridesc = "Dumb Charades, Pictionary and everything else that you do to pass time - think you're good at it? Think you can name famous movies and TV Shows and personalities off the top of your head? Then why don't you make some money out of it? Tag your friends along and register for a super fun event!";
+        String cryptORigdesc = "Sherlock Holmes or Hercule Poirot - is one of them your detective heroes? Do you find it amusing to solve perplexing mysteries? If your answer is yes, sign up for Crypt-o-rig, a mind boggling event (literally!) where participants are required to solve the black box mystery and they, in turn win a clue to the final round with their detective skills. Only, here, it's an exciting walk through circuits and codes!";
+        String googleItdesc = "Are you good at googling stuff? Then this is the right event for you! You'll be given an image of a webpage, and you need to find the exact URL of the webpage by using the clues in the image. The team which gets the maximum URLs right out of 15 such questions, will be declared the winner.";
+        String chuckGliderdesc = "Chuck gliding. Learn, build and fly your own chuck glider. You will only need your enthusiasm. All materials will be provided with the workshop.";
+        String photographydesc = "Make a statement without saying a word! The participants will be given a topic on the day of the event and they will have to click a picture using DSLR/Digital camera and submit within 3 hours. No post processing will be allowed.";
+        String hireFiredesc = "Clearing interviews has never been easy - but we'll make it slightly easier for you! In Hire or Fire, participants will undergo a group discussion round and will have to clear it, following which they will face judges in the Personal Interview round.";
+        String rubiksCubedesc = "Cube On 2016, the first ever speed cubing event in Tatva 2016, with WCA recognition. Cubers from all over the country are welcome to showcase their speed cubing skills at this breathtaking event. Age is never a limitation to challenge the world of cubers here. If you're one of those cubers who can solve the Rubik's Cube with ease and are willing to prove your talent by competing with the best cubers in India then join us at Cube On 2016.";
+        String bbRoydesc = "An event for the Sherlock \"Ohms\"! There are two kinds of resistors - BBROY of Great Britain had a Very Good Wife or BBROY Goes to Bombay Via Gate Way! Whichever side you're on, you'd better stick to it because BBROY is the guy helping you out in the two rounds of this resistor-filled contest!";
         String trdpldesc = "null";
-        String hogathondesc = "null";
+        String hogathondesc = "Eat! Consume! Gobble! Devour! Smack! Crunch! Yum! Gollop! Guzzle! Gulp! Do we need add more? If you've got an appetite that can overtake the food we have on offer, we challenge you to prove it! Come on, you can't say no to food!";
+        String gamingConsoledesc = "For the first time ever, BNMIT plays host to console wars! Get ready to play one of the most exciting games on the PlayStation - FIFA 16! You think you can keep up?";
 
         //Days
 
@@ -319,7 +320,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String techtalkday = "26th February, 2016";
         String corcongday = "26th February, 2016";
         String mockgreday = "26th February, 2016";
-        String gamingday = "26th & 27th February, 2016";
+        String gamingPCday = "26th February, 2016";
         String mockstockday = "26th February, 2016";
         String treasurehuntday = "26th February, 2016";
         String essenceday = "27th February, 2016";
@@ -336,35 +337,37 @@ public class ScrollingActivity extends AppCompatActivity {
         String rubikscubdeday = "27th February, 2016";
         String hogathonday = "27th February, 2016";
         String trdplday = "27th February, 2016";
+        String gamingConsoleday = "27th February, 2016";
 
         //Timings
 
-        String technogentime = "10:00 AM";
+        String technogentime = "9:30 AM";
         String techdctime = "9:30 AM";
-        String productlaunchtime = "9:30 AM";
+        String productlaunchtime = "null";
         String patternprinttime = "9:30 AM";
         String circuitdebugtime = "9:30 AM";
         String techjamtime = "10:00 AM";
-        String techtalktime = "10:00 AM";
+        String techtalktime = "9:30 AM";
         String corcongtime = "9:30 AM";
-        String mockgretime = "10:00 AM";
-        String gamingtime = "9:30 AM";
+        String mockgretime = "9:30 AM";
+        String gamingPCtime = "9:30 AM";
         String mockstocktime = "1:30 PM";
-        String treasurehunttime = "2:30 PM";
-        String essencetime = "10:00 AM";
-        String eetm2time = "10:00 AM";
+        String treasurehunttime = "3:00 PM";
+        String essencetime = "9:30 AM";
+        String eetm2time = "9:30 AM";
         String potpourritime = "9:00 AM";
-        String kartittime = "2:00 PM";
-        String googleittime = "3:00 PM";
-        String hirefiretime = "10:00 AM";
-        String photographytime = "9:00 AM";
-        String bbroytime = "10:00 AM";
-        String cryptorigtime = "1:00 PM";
-        String codingtime = "10:00 AM";
-        String chuckglidertime = "9:30 AM";
-        String rubikscubetime = "9:30 AM";
-        String hogathontime = "10:00 AM";
-        String trdpltime = "6:00 PM";
+        String kartittime = "1:30 PM";
+        String googleittime = "2:30 PM";
+        String hirefiretime = "9:30 AM";
+        String photographytime = "9:30 AM";
+        String bbroytime = "9:300 AM";
+        String cryptorigtime = "12:30 PM";
+        String codingtime = "9:30 AM";
+        String chuckglidertime = "9:00 AM";
+        String rubikscubetime = "9:00 AM";
+        String hogathontime = "9:30 AM";
+        String trdpltime = "null";
+        String gamingConsoletime = "9:30 AM";
 
         //Location
 
@@ -377,7 +380,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String techtalkloc = "Classroom, New Building";
         String corcongloc = "Srishti Sambhrama Hall, Auditorium Building";
         String mockgreloc = "2 labs, New Building";
-        String gamingloc = "labs, New Building";
+        String gamingPCloc = "labs, New Building";
         String mockstockloc = "2nd floor labs, Main Building";
         String treasurehuntloc = "2nd floor labs, Main Building";
         String essenceloc = "MBA Seminar Hall, New Building";
@@ -394,6 +397,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String rubikscubeloc = "Srishti Sambhrama Hall, Auditorium Building";
         String hogathonloc = "Quadrangle, Main Building";
         String trdplloc = "Auditorium, Auditorium Building";
+        String gamingConsoleloc = "null";
 
         //Team Members
 
@@ -403,55 +407,57 @@ public class ScrollingActivity extends AppCompatActivity {
         String corcongtm = "Team of 2";
         String mockstocktm = "Team of 2";
         String treasurehunttm = "Team of 3";
-        String techjamtm = "Solo";
-        String techtalktm = "null";
-        String gamingtm = "null";
+        String techjamtm = "Team of 1";
+        String techtalktm = "Team of 1";
+        String gamingPCtm = "null";
         String productlaunchtm = "null";
-        String mockgretm = "Solo";
+        String mockgretm = "Team of 1";
         String patternprinttm = "Team of 2";
         String eetm2tm = "Team of 2";
         String essencetm = "Team of 2";
-        String kartittm = "Solo";
+        String kartittm = "Team of 2";
         String codingtm = "Team of 2";
         String potpourritm = "Team of 3";
         String cryptorigtm = "Team of 2";
         String googleittm = "Team of 2";
-        String chuckglidertm = "Team of 2-4";
-        String photographytm = "Solo";
-        String hirefiretm = "Solo";
-        String rubikscubetm = "Solo";
+        String chuckglidertm = "Team of 2 to 4";
+        String photographytm = "Team of 1";
+        String hirefiretm = "Team of 1";
+        String rubikscubetm = "Team of 1";
         String bbroytm = "Team of 2";
         String trdpltm = "null";
-        String hogathontm = "Solo";
+        String hogathontm = "Team of 1";
+        String gamingConsoletm = "Team of 1";
 
         //Ticket Rate
 
-        String techdctr = "null";
-        String technogentr = "null";
-        String circuitdebugtr = "null";
-        String corcongtr = "null";
-        String mockstocktr = "null";
-        String treasurehunttr = "null";
-        String techjamtr = "null";
+        String techdctr = "\u20B990/team";
+        String technogentr = "\u20B9120/team";
+        String circuitdebugtr = "\u20B960/team";
+        String corcongtr = "\u20B9100/team";
+        String mockstocktr = "\u20B980/team";
+        String treasurehunttr = "\u20B9120/team";
+        String techjamtr = "\u20B960/team";
         String techtalktr = "null";
-        String gamingtr = "null";
+        String gamingPCtr = "NFS: \u20B950/team\nCoD: \u20B9200/team\nCS: \u20B9200/team\nDoTA 2: \u20B9300/team";
         String productlaunchtr = "null";
-        String mockgretr = "null";
-        String patternprinttr = "null";
-        String eetm2tr = "null";
-        String essencetr = "null";
-        String kartittr = "null";
-        String codingtr = "null";
-        String potpourritr = "null";
-        String cryptorigtr = "null";
-        String googleittr = "null";
-        String chuckglidertr = "null";
-        String photographytr = "null";
-        String hirefiretr = "null";
+        String mockgretr = "\u20B9100/team";
+        String patternprinttr = "\u20B9100/team";
+        String eetm2tr = "\u20B980/team";
+        String essencetr = "\u20B980/team";
+        String kartittr = "\u20B960/team";
+        String codingtr = "\u20B9100/team";
+        String potpourritr = "\u20B9120/team";
+        String cryptorigtr = "\u20B990/team";
+        String googleittr = "\u20B960/team";
+        String chuckglidertr = "\u20B9400/team";
+        String photographytr = "Professional: \u20B9100/team\nAmateur: \u20B970/team";
+        String hirefiretr = "\u20B950/team";
         String rubikscubetr = "null";
-        String bbroytr = "null";
+        String bbroytr = "\u20B950/team";
         String trdpltr = "null";
-        String hogathontr = "null";
+        String hogathontr = "\u20B950/team";
+        String gamingConsoletr = "\u20B9100/team";
 
         //First Prize
 
@@ -463,7 +469,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntfp = "null";
         String techjamfp = "null";
         String techtalkfp = "null";
-        String gamingfp = "null";
+        String gamingPCfp = "null";
         String productlaunchfp = "null";
         String mockgrefp = "null";
         String patternprintfp = "null";
@@ -481,6 +487,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String bbroyfp = "null";
         String trdplfp = "null";
         String hogathonfp = "null";
+        String gamingConsolefp = "null";
 
         //Second Prize
 
@@ -492,7 +499,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntsp = "null";
         String techjamsp = "null";
         String techtalksp = "null";
-        String gamingsp = "null";
+        String gamingPCsp = "null";
         String productlaunchsp = "null";
         String mockgresp = "null";
         String patternprintsp = "null";
@@ -510,6 +517,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String bbroysp = "null";
         String trdplsp = "null";
         String hogathonsp = "null";
+        String gamingConsolesp = "null";
 
         //Organizer1
 
@@ -521,7 +529,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehunto1 = "Kirthan";
         String techjamo1 = "Suhas";
         String techtalko1 = "Sharanya";
-        String gamingo1 = "Shrey";
+        String gamingPCo1 = "Shrey";
         String productlauncho1 = "null";
         String mockgreo1 = "Vidya";
         String patternprinto1 = "Sugosh";
@@ -539,6 +547,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String bbroyo1 = "Amulya";
         String trdplo1 = "null";
         String hogathono1 = "null";
+        String gamingConsoleo1 = "null";
 
         //Organizer2
 
@@ -550,7 +559,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehunto2 = "Anasuya";
         String techjamo2 = "Srinishi";
         String techtalko2 = "Shwetha";
-        String gamingo2 = "null";
+        String gamingPCo2 = "null";
         String productlauncho2 = "null";
         String mockgreo2 = "null";
         String patternprinto2 = "Dheeraj";
@@ -568,6 +577,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String bbroyo2 = "Ranjitha";
         String trdplo2 = "null";
         String hogathono2 = "null";
+        String gamingConsoleo2 = "null";
 
         //Phone 1
 
@@ -579,7 +589,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntp1 = "8123995823";
         String techjamp1 = "9538946191";
         String techtalkp1 = "null";
-        String gamingp1 = "null";
+        String gamingPCp1 = "null";
         String productlaunchp1 = "null";
         String mockgrep1 = "9916438368";
         String patternprintp1 = "9880085543";
@@ -597,6 +607,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String bbroyp1 = "9482480881";
         String trdplp1 = "null";
         String hogathonp1 = "null";
+        String gamingConsolep1 = "null";
 
         //Phone 2
 
@@ -608,7 +619,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntp2 = "9632508127";
         String techjamp2 = "8970970532";
         String techtalkp2 = "null";
-        String gamingp2 = "null";
+        String gamingPCp2 = "null";
         String productlaunchp2 = "null";
         String mockgrep2 = "null";
         String patternprintp2 = "9483918712";
@@ -626,35 +637,37 @@ public class ScrollingActivity extends AppCompatActivity {
         String bbroyp2 = "9880783959";
         String trdplp2 = "null";
         String hogathonp2 = "null";
+        String gamingConsolep2 = "null";
 
         //Poster ID
 
-        int techdcpi = R.mipmap.ic_launcher;
+        int techdcpi = R.drawable.tech_dc;
         int technogenpi = R.mipmap.ic_launcher;
-        int circuitdebugpi = R.mipmap.ic_launcher;
+        int circuitdebugpi = R.drawable.circuit_debugging;
         int corcongpi = R.mipmap.ic_launcher;
         int mockstockpi = R.mipmap.ic_launcher;
-        int treasurehuntpi = R.mipmap.ic_launcher;
+        int treasurehuntpi = R.drawable.treasure_hunt;
         int techjampi = R.mipmap.ic_launcher;
-        int techtalkpi = R.mipmap.ic_launcher;
-        int gamingpi = R.mipmap.ic_launcher;
+        int techtalkpi = R.drawable.tech_talk;
+        int gamingPCpi = R.mipmap.ic_launcher;
         int productlaunchpi = R.mipmap.ic_launcher;
-        int mockgrepi = R.mipmap.ic_launcher;
-        int patternprintpi = R.mipmap.ic_launcher;
+        int mockgrepi = R.drawable.mock_gre;
+        int patternprintpi = R.drawable.pattern_print;
         int eetm2pi = R.mipmap.ic_launcher;
-        int essencepi = R.mipmap.ic_launcher;
-        int kartitpi = R.mipmap.ic_launcher;
-        int codingpi = R.mipmap.ic_launcher;
-        int potpourripi = R.mipmap.ic_launcher;
+        int essencepi = R.drawable.essence;
+        int kartitpi = R.drawable.kart_it;
+        int codingpi = R.drawable.coding;
+        int potpourripi = R.drawable.potpourri;
         int cryptorigpi = R.mipmap.ic_launcher;
-        int googleitpi = R.mipmap.ic_launcher;
-        int chuckgliderpi = R.mipmap.ic_launcher;
-        int photographypi = R.mipmap.ic_launcher;
-        int hirefirepi = R.mipmap.ic_launcher;
-        int rubikscubepi = R.mipmap.ic_launcher;
+        int googleitpi = R.drawable.google_it;
+        int chuckgliderpi = R.drawable.chuck_glider;
+        int photographypi = R.drawable.photography;
+        int hirefirepi = R.drawable.hire_fire;
+        int rubikscubepi = R.drawable.cube_on;
         int bbroypi = R.mipmap.ic_launcher;
         int trdplpi = R.mipmap.ic_launcher;
-        int hogathonpi = R.mipmap.ic_launcher;
+        int hogathonpi = R.drawable.hogathon;
+        int gamingConsolepi = R.mipmap.ic_launcher;
 
         //Making ArrayList
 
@@ -662,7 +675,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
         eventDetailDataList.add(new EventDetailData(circuitdebugpi, circuitDebugname, circuitdebugday, circuitdebugtime, circuitdebugloc, circuitDebugdesc, circuitdebugtm, circuitdebugtr, circuitdebugfp, circuitdebugsp, circuitdebugo1, circuitdebugo2, circuitdebugp1, circuitdebugp2));
         eventDetailDataList.add(new EventDetailData(corcongpi, corcongname, corcongday, corcongtime, corcongloc, corporateCongdesc, corcongtm, corcongtr, corcongfp, corcongsp, corcongo1, corcongo2, corcongp1, corcongp2));
-        eventDetailDataList.add(new EventDetailData(gamingpi, gamingname, gamingday, gamingtime, gamingloc, gamingdesc, gamingtm, gamingtr, gamingfp, gamingsp, gamingo1, gamingo2, gamingp1, gamingp2));
+        eventDetailDataList.add(new EventDetailData(gamingPCpi, gamingPCname, gamingPCday, gamingPCtime, gamingPCloc, gamingPCdesc, gamingPCtm, gamingPCtr, gamingPCfp, gamingPCsp, gamingPCo1, gamingPCo2, gamingPCp1, gamingPCp2));
         eventDetailDataList.add(new EventDetailData(techjampi, techjamname, techjamday, techjamtime, techjamloc, techjamMdesc, techjamtm, techjamtr, techjamfp, techjamsp, techjamo1, techjamo2, techjamp1, techjamp2));
         eventDetailDataList.add(new EventDetailData(mockgrepi, mockGREname, mockgreday, mockgretime, mockgreloc, mockGREdesc, mockgretm, mockgretr, mockgrefp, mockgresp, mockgreo1, mockgreo2, mockgrep1, mockgrep2));
         eventDetailDataList.add(new EventDetailData(mockstockpi, mockStockname, mockstockday, mockstocktime, mockstockloc, mockStockdesc, mockstocktm, mockstocktr, mockstockfp, mockstocksp, mockstocko1, mockstocko2, mockstockp1, mockstockp2));
@@ -685,6 +698,7 @@ public class ScrollingActivity extends AppCompatActivity {
         eventDetailDataList.add(new EventDetailData(cryptorigpi, cryptorigname, cryptorigday, cryptorigtime, cryptorigloc, cryptORigdesc, cryptorigtm, cryptorigtr, cryptorigfp, cryptorigsp, cryptorigo1, cryptorigo2, cryptorigp1, cryptorigp2));
         eventDetailDataList.add(new EventDetailData(eetm2pi, eetm2name, eetm2day, eetm2time, eetm2loc, eETM2desc, eetm2tm, eetm2tr, eetm2fp, eetm2sp, eetm2o1, eetm2o2, eetm2p1, eetm2p2));
         eventDetailDataList.add(new EventDetailData(essencepi, essencename, essenceday, essencetime, essenceloc, essencedesc, essencetm, essencetr, essencefp, essencesp, essenceo1, essenceo2, essencep1, essencep2));
+        eventDetailDataList.add(new EventDetailData(gamingConsolepi, gamingConsolename, gamingConsoleday, gamingConsoletime, gamingConsoleloc, gamingConsoledesc, gamingConsoletm, gamingConsoletr, gamingConsolefp, gamingConsolesp, gamingConsoleo1, gamingConsoleo2, gamingConsolep1, gamingConsolep2));
         eventDetailDataList.add(new EventDetailData(googleitpi, googleitname, googleitday, googleittime, googleitloc, googleItdesc, googleittm, googleittr, googleitfp, googleitsp, googleito1, googleito2, googleitp1, googleitp2));
         eventDetailDataList.add(new EventDetailData(hirefirepi, hirefirename, hirefireday, hirefiretime, hirefireloc, hireFiredesc, hirefiretm, hirefiretr, hirefirefp, hirefiresp, hirefireo1, hirefireo2, hirefirep1, hirefirep2));
         eventDetailDataList.add(new EventDetailData(hogathonpi, hogathonname, hogathonday, hogathontime, hogathonloc, hogathondesc, hogathontm, hogathontr, hogathonfp, hogathonsp, hogathono1, hogathono2, hogathonp1, hogathonp2));
@@ -692,10 +706,7 @@ public class ScrollingActivity extends AppCompatActivity {
         eventDetailDataList.add(new EventDetailData(photographypi, photographyname, photographyday, photographytime, photographyloc, photographydesc, photographytm, photographytr, photographyfp, photographysp, photographyo1, photographyo2, photographyp1, photographyp2));
         eventDetailDataList.add(new EventDetailData(potpourripi, potpourriname, potpourriday, potpourritime, potpourriloc, potpourridesc, potpourritm, potpourritr, potpourrifp, potpourrisp, potpourrio1, potpourrio2, potpourrip1, potpourrip2));
         eventDetailDataList.add(new EventDetailData(rubikscubepi, rubikscubename, rubikscubdeday, rubikscubetime, rubikscubeloc, rubiksCubedesc, rubikscubetm, rubikscubetr, rubikscubefp, rubikscubesp, rubikscubeo1, rubikscubeo2, rubikscubep1, rubikscubep2));
-
     }
-
-
 }
 
 class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.EventViewHolder> {
@@ -718,16 +729,29 @@ class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.Event
     @Override
     public void onBindViewHolder(final RecyclerViewAdapter.EventViewHolder holder, int position) {
 
-        Glide.with(mContext).load(this.eventDataList.get(position).eventPosterId).into(holder.eventPoster);
-        Palette.Swatch colors = eventDataList.get(position).colors;
-        holder.eventDataHolder.setBackgroundColor(colors.getRgb());
-        holder.eventTitle.setTextColor(colors.getTitleTextColor());
-        holder.eventTiming.setTextColor(colors.getTitleTextColor());
+        Glide.with(mContext).load(this.eventDataList.get(position).eventPosterId).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.eventPoster) {
+
+            @Override
+            protected void setResource(Bitmap resource) {
+                super.setResource(resource);
+                Palette.from(resource).generate(new Palette.PaletteAsyncListener() {
+                    @Override
+                    public void onGenerated(Palette palette) {
+                        if (palette != null) {
+                            Palette.Swatch vibrantColors = palette.getVibrantSwatch();
+                            if (vibrantColors != null) {
+                                holder.eventDataHolder.setBackgroundColor(vibrantColors.getRgb());
+                                holder.eventTitle.setTextColor(vibrantColors.getTitleTextColor());
+                                holder.eventTiming.setTextColor(vibrantColors.getTitleTextColor());
+                            }
+                        }
+                    }
+                });
+            }
+        });
         holder.eventTitle.setText(this.eventDataList.get(position).eventName);
         holder.eventTiming.setText(this.eventDataList.get(position).eventTimings);
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -781,13 +805,11 @@ class EventData {
     String eventName;
     String eventTimings;
     int eventPosterId;
-    Palette.Swatch colors;
 
-    EventData(String title, String time, int id, Palette.Swatch colors) {
+    EventData(String title, String time, int id) {
         this.eventName = title;
         this.eventTimings = time;
         this.eventPosterId = id;
-        this.colors = colors;
     }
 }
 
@@ -825,6 +847,4 @@ class EventDetailData {
         this.phone1 = phone1;
         this.phone2 = phone2;
     }
-
-
 }

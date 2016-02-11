@@ -2,6 +2,7 @@ package com.biryanistudio.tatvaapp;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -40,6 +44,7 @@ public class EventActivity extends AppCompatActivity {
 
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout_event);
         ImageView eventPoster = (ImageView) findViewById(R.id.eventPoster);
+        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(eventPoster);
         TextView eventName = (TextView) findViewById(R.id.eventName);
         TextView eventDay = (TextView) findViewById(R.id.eventDay);
         TextView eventTime = (TextView) findViewById(R.id.eventTime);
@@ -56,22 +61,27 @@ public class EventActivity extends AppCompatActivity {
         LinearLayout layout1 = (LinearLayout) findViewById(R.id.organizer1Layout);
         LinearLayout layout2 = (LinearLayout) findViewById(R.id.organizer2Layout);
 
-        Palette palette = Palette.from(BitmapFactory.decodeResource(getResources(),posterid)).generate();
-        Palette.Swatch swatch = palette.getVibrantSwatch();
-        Palette.Swatch dark = palette.getDarkVibrantSwatch();
-        if(swatch!=null) {
-            collapsingToolbarLayout.setBackgroundColor(swatch.getRgb());
-            eventName.setTextColor(swatch.getTitleTextColor());
-        }
-        if(dark!=null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(dark.getRgb());
-                getWindow().setNavigationBarColor(dark.getRgb());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Palette palette = Palette.from(BitmapFactory.decodeResource(getResources(), posterid)).generate();
+            Palette.Swatch swatch = palette.getVibrantSwatch();
+            Palette.Swatch dark = palette.getDarkVibrantSwatch();
+            if (swatch != null) {
+                collapsingToolbarLayout.setBackgroundColor(swatch.getRgb());
+                eventName.setBackgroundColor(swatch.getRgb());
+                eventName.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
+                eventName.setTextColor(swatch.getTitleTextColor());
+            }
+            if (dark != null) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    getWindow().setStatusBarColor(dark.getRgb());
+                    getWindow().setNavigationBarColor(dark.getRgb());
+                }
             }
         }
 
         eventName.setText(name);
         eventPoster.setImageResource(posterid);
+        Glide.with(this).load(posterid).centerCrop().into(imageViewTarget);
         eventDay.setText(day);
         eventTime.setText(time);
         eventLocation.setText(location);
@@ -79,12 +89,12 @@ public class EventActivity extends AppCompatActivity {
         eventTeamMembers.setText(teammembers);
         eventTicketRate.setText(rate);
 
-        if(!organizer1.equalsIgnoreCase("null"))
+        if (!organizer1.equalsIgnoreCase("null"))
             eventOrganizer1.setText(organizer1);
         else
             layout1.setVisibility(View.GONE);
 
-        if(!organizer2.equalsIgnoreCase("null"))
+        if (!organizer2.equalsIgnoreCase("null"))
             eventOrganizer2.setText(organizer2);
         else
             layout2.setVisibility(View.GONE);
@@ -95,7 +105,7 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(Intent.ACTION_DIAL);
-                intent1.setData(Uri.parse("tel:"+phone1));
+                intent1.setData(Uri.parse("tel:" + phone1));
                 startActivity(intent1);
             }
         });
@@ -103,7 +113,7 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent2 = new Intent(Intent.ACTION_DIAL);
-                intent2.setData(Uri.parse("tel:"+phone2));
+                intent2.setData(Uri.parse("tel:" + phone2));
                 startActivity(intent2);
             }
         });
