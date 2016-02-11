@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -42,10 +41,9 @@ public class EventActivity extends AppCompatActivity {
         final String phone2 = intent.getExtras().getString("phone2");
 
 
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout_event);
+        final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout_event);
         ImageView eventPoster = (ImageView) findViewById(R.id.eventPoster);
-        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(eventPoster);
-        TextView eventName = (TextView) findViewById(R.id.eventName);
+        final TextView eventName = (TextView) findViewById(R.id.eventName);
         TextView eventDay = (TextView) findViewById(R.id.eventDay);
         TextView eventTime = (TextView) findViewById(R.id.eventTime);
         TextView eventLocation = (TextView) findViewById(R.id.eventLocation);
@@ -62,26 +60,33 @@ public class EventActivity extends AppCompatActivity {
         LinearLayout layout2 = (LinearLayout) findViewById(R.id.organizer2Layout);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Palette palette = Palette.from(BitmapFactory.decodeResource(getResources(), posterid)).generate();
-            Palette.Swatch swatch = palette.getVibrantSwatch();
-            Palette.Swatch dark = palette.getDarkVibrantSwatch();
-            if (swatch != null) {
-                collapsingToolbarLayout.setBackgroundColor(swatch.getRgb());
-                eventName.setBackgroundColor(swatch.getRgb());
-                eventName.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
-                eventName.setTextColor(swatch.getTitleTextColor());
-            }
-            if (dark != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    getWindow().setStatusBarColor(dark.getRgb());
-                    getWindow().setNavigationBarColor(dark.getRgb());
+            Palette.from(BitmapFactory.decodeResource(getResources(), posterid)).generate(new Palette.PaletteAsyncListener() {
+                @Override
+                public void onGenerated(Palette palette) {
+
+                    Palette.Swatch swatch = palette.getVibrantSwatch();
+                    Palette.Swatch dark = palette.getDarkVibrantSwatch();
+                    if (swatch != null) {
+                        collapsingToolbarLayout.setBackgroundColor(swatch.getRgb());
+                        eventName.setBackgroundColor(swatch.getRgb());
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            eventName.setBackgroundTintMode(PorterDuff.Mode.SCREEN);
+                        }
+                        eventName.setTextColor(swatch.getTitleTextColor());
+                    }
+                    if (dark != null) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            getWindow().setStatusBarColor(dark.getRgb());
+                            getWindow().setNavigationBarColor(dark.getRgb());
+                        }
+                    }
+
                 }
-            }
+            });
         }
 
         eventName.setText(name);
-        eventPoster.setImageResource(posterid);
-        Glide.with(this).load(posterid).centerCrop().into(imageViewTarget);
+        Glide.with(this).load(posterid).centerCrop().into(eventPoster);
         eventDay.setText(day);
         eventTime.setText(time);
         eventLocation.setText(location);

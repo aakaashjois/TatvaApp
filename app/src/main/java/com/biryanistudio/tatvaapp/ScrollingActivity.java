@@ -177,7 +177,14 @@ public class ScrollingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        return id == R.id.action_about || super.onOptionsItemSelected(item);
+        if (id == R.id.action_about) {
+
+            Intent i = new Intent(ScrollingActivity.this, AboutActivity.class);
+            startActivity(i);
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
