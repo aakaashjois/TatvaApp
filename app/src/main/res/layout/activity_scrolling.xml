@@ -12,8 +12,7 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:elevation="10dp"
+        android:layout_height="280dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -21,24 +20,20 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="4dp"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="enterAlways|enterAlwaysCollapsed|scroll"
             app:titleEnabled="true">
 
             <ImageView
+                android:id="@+id/mainPoster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="4dp"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/ic_launcher"
                 app:layout_collapseMode="pin" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbarnew"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:elevation="4dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
@@ -55,6 +50,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/map"
-        android:transitionName="@string/fab_transition"/>
+        android:transitionName="fab_maps" />
 
 </android.support.design.widget.CoordinatorLayout>

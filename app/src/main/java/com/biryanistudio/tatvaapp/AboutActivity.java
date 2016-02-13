@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 
@@ -21,8 +22,8 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setNavigationBarColor(ContextCompat.getColor(getApplicationContext(), android.R.color.black));
-            getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), android.R.color.black));
+            getWindow().setNavigationBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
+            getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
         }
 
         CircleImageView tatvaLogoImageView = (CircleImageView) findViewById(R.id.tatvaLogoImageView);
@@ -30,8 +31,11 @@ public class AboutActivity extends AppCompatActivity {
         ImageButton facebookButton = (ImageButton) findViewById(R.id.facebookButton);
         ImageButton instagramButton = (ImageButton) findViewById(R.id.instagramButton);
         ImageButton webButton = (ImageButton) findViewById(R.id.webButton);
+        ImageButton playButton = (ImageButton) findViewById(R.id.playButton);
 
         CircleImageView appDevImageView = (CircleImageView) findViewById(R.id.appDevImage);
+
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.appDeveloper);
 
         Glide.with(getApplicationContext()).load(R.drawable.tatva_logo).fitCenter().into(tatvaLogoImageView);
         Glide.with(getApplicationContext()).load(R.drawable.devpic).fitCenter().into(appDevImageView);
@@ -40,7 +44,7 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/" + "")));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/426269937531729")));
                 } catch (Exception e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Tatva15")));
                 }
@@ -67,6 +71,24 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.tatvabnmit.com")));
+            }
+        });
+
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.biryanistudio.tatvaapp")));
+                } catch (Exception e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=com.biryanistudio.tatvaapp")));
+                }
+            }
+        });
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://about.me/aakaashjois")));
             }
         });
 

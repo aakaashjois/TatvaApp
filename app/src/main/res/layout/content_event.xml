@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_event">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/eventCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/activity_horizontal_margin"
@@ -16,8 +17,7 @@
         android:transitionName="eventCardHolder"
         app:cardCornerRadius="@dimen/cardview_default_radius"
         app:cardElevation="@dimen/cardview_default_elevation"
-        app:cardUseCompatPadding="true"
-        app:theme="@style/CardView.Dark">
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +46,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="6"
-                    android:text="Day"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
             </LinearLayout>
@@ -70,7 +69,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="6"
-                    android:text="Time"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
                     android:transitionName="eventTimingHolder" />
 
@@ -95,7 +93,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="6"
-                    android:text="Location"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
             </LinearLayout>
@@ -119,12 +116,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="6"
-                    android:text="Description"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/eventRate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -143,12 +140,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="6"
-                    android:text="Ticket Rate"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/eventTeam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -167,7 +164,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="6"
-                    android:text="Team Members"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
             </LinearLayout>
@@ -178,37 +174,51 @@
                 android:orientation="horizontal"
                 android:paddingBottom="@dimen/activity_vertical_margin">
 
-                <ImageView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:id="@+id/layoutFirstPrize"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    android:src="@drawable/star" />
+                    android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/eventFirstPrize"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="5"
-                    android:text="First Prize"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/star" />
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    android:src="@drawable/star_half" />
+                    <TextView
+                        android:id="@+id/eventFirstPrize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
-                <TextView
-                    android:id="@+id/eventSecondPrize"
-                    android:layout_width="0dp"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSecondPrize"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="5"
-                    android:text="Second Prize"
-                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:src="@drawable/star_half" />
+
+                    <TextView
+                        android:id="@+id/eventSecondPrize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -232,7 +242,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="5"
-                    android:text="Organizer 1"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
                 <Button
@@ -264,7 +273,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="5"
-                    android:text="Organizer 2"
                     android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium" />
 
                 <Button

@@ -32,6 +32,7 @@
                     android:id="@+id/tatvaLogoImageView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:padding="@dimen/activity_horizontal_margin"
                     app:civ_border_color="@android:color/black"
@@ -41,6 +42,7 @@
                     android:id="@+id/tatvaLogoTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="4"
                     android:padding="@dimen/activity_horizontal_margin"
                     android:text="Tatva 2016"
@@ -53,6 +55,7 @@
                 android:id="@+id/copyrightTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="@dimen/activity_horizontal_margin"
                 android:text="@string/copyrights" />
 
             <LinearLayout
@@ -93,17 +96,31 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/website" />
 
+                <ImageButton
+                    android:id="@+id/playButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="#699F19"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/play" />
+
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/appDeveloper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="3"
+                    android:foreground="?android:attr/selectableItemBackground"
                     android:orientation="vertical">
 
 
@@ -128,6 +145,7 @@
                     android:id="@+id/appDevImage"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     app:civ_border_color="@android:color/black"
                     app:civ_border_width="2dp" />
