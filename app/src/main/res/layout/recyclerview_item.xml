@@ -4,9 +4,14 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/text_margin"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    android:paddingEnd="@dimen/text_margin"
+    android:paddingStart="@dimen/text_margin"
+    android:paddingTop="@dimen/text_margin"
     card_view:cardCornerRadius="@dimen/cardview_default_radius"
     card_view:cardElevation="@dimen/cardview_default_elevation"
     card_view:cardPreventCornerOverlap="true"
@@ -21,6 +26,7 @@
             android:id="@+id/poster"
             android:layout_width="match_parent"
             android:layout_height="240dp"
+            android:contentDescription="@string/event_poster"
             android:scaleType="fitCenter" />
 
 

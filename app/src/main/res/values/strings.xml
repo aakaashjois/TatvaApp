@@ -4,6 +4,25 @@
     <string name="fab_transition">fab_maps</string>
     <string name="title_activity_event"> </string>
     <string name="title_activity_maps"> </string>
-    <string name="copyrights">The \"Tatva\" Logo in this Application belongs to B.N.M. Institute of Technology and shall not be copied or used in any other context.\n\nThe modules "CircleImageView" created by "Henning Dodenhof" and Glide created by "Bump Technologies" are used in this Application under the Apache Licenses 2.0 and 3.0 </string>
+    <string name="copyrights">The \"Tatva\" Logo in this Application belongs to B.N.M. Institute of Technology and shall not be copied or used in any other context.\n\nThe modules "CircleImageView" created by "Henning Dodenhof" and Glide created by "Bump Technologies" are used in this Application under the Apache Licenses 2.0 and 3.0. </string>
+    <string name="dev_subtext">The App Designer and Developer.</string>
+    <string name="dev_text">Aakaash Jois</string>
+    <string name="google_play">Google Play</string>
+    <string name="website">Website</string>
+    <string name="instagram">Instagram</string>
+    <string name="facebook">Facebook</string>
+    <string name="phone">Phone</string>
+    <string name="event_poster">Event Poster</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="location">Location</string>
+    <string name="description">Description</string>
+    <string name="ticket_price">Ticket Price</string>
+    <string name="team_members">Team Members</string>
+    <string name="first_prize">First Prize</string>
+    <string name="organizer">Organizer</string>
+    <string name="contact_organizer">Contact Organizer</string>
+    <string name="second_prize">Second Prize</string>
+    <string name="google_maps_key">AIzaSyA2EADd0Wu3s5yxYYChfQLghOoX7KpC_eI</string>
 
 </resources>
