@@ -38,7 +38,6 @@ public class EventActivity extends AppCompatActivity {
         String organizer2 = intent.getExtras().getString("organizer2");
         final String phone1 = intent.getExtras().getString("phone1");
         final String phone2 = intent.getExtras().getString("phone2");
-
         final CardView eventCard = (CardView) findViewById(R.id.eventCard);
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout_event);
         ImageView eventPoster = (ImageView) findViewById(R.id.eventPoster);

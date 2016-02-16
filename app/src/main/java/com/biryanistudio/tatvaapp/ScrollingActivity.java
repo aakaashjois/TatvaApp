@@ -41,6 +41,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+
 public class ScrollingActivity extends AppCompatActivity {
 
     private RecyclerView eventList;
@@ -112,7 +114,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 ActivityCompat.startActivity(ScrollingActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
-        eventList.setAdapter(recyclerViewAdapter);
+        eventList.setAdapter(new ScaleInAnimationAdapter(recyclerViewAdapter));
 
         fab.setVisibility(View.INVISIBLE);
         if ((ContextCompat.checkSelfPermission(ScrollingActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
