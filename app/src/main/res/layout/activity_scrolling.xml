@@ -27,7 +27,9 @@
                 android:id="@+id/mainPoster"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:clickable="true"
                 android:contentDescription="@string/event_poster"
+                android:onClick="startInfoActivity"
                 app:layout_collapseMode="pin" />
 
             <android.support.v7.widget.Toolbar

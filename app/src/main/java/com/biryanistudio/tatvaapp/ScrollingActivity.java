@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,6 +42,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
 public class ScrollingActivity extends AppCompatActivity {
@@ -114,7 +116,9 @@ public class ScrollingActivity extends AppCompatActivity {
                 ActivityCompat.startActivity(ScrollingActivity.this, intent, activityOptionsCompat.toBundle());
             }
         });
-        eventList.setAdapter(new ScaleInAnimationAdapter(recyclerViewAdapter));
+        eventList.setAdapter(new ScaleInAnimationAdapter(new AlphaInAnimationAdapter(recyclerViewAdapter)));
+        eventList.startAnimation(AnimationUtils.loadAnimation(this, R.anim.view_up));
+        collapsingToolbarLayout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.view_up));
 
         fab.setVisibility(View.INVISIBLE);
         if ((ContextCompat.checkSelfPermission(ScrollingActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
@@ -162,6 +166,11 @@ public class ScrollingActivity extends AppCompatActivity {
 
     }
 
+    public void startInfoActivity(View view) {
+
+        startActivity(new Intent(this, AboutActivity.class));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
@@ -170,16 +179,13 @@ public class ScrollingActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_about) {
-
-            Intent i = new Intent(ScrollingActivity.this, AboutActivity.class);
-            startActivity(i);
-
+        switch (item.getItemId()) {
+            case R.id.action_about:
+                startActivity(new Intent(ScrollingActivity.this, AboutActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -265,7 +271,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String hireFiredesc = "Clearing interviews has never been easy - but we'll make it slightly easier for you! In Hire or Fire, participants will undergo a group discussion round and will have to clear it, following which they will face judges in the Personal Interview round.";
         String rubiksCubedesc = "Cube On 2016, the first ever speed cubing event in Tatva 2016, with WCA recognition. Cubers from all over the country are welcome to showcase their speed cubing skills at this breathtaking event. Age is never a limitation to challenge the world of cubers here. If you're one of those cubers who can solve the Rubik's Cube with ease and are willing to prove your talent by competing with the best cubers in India then join us at Cube On 2016.";
         String bbRoydesc = "An event for the Sherlock \"Ohms\"! There are two kinds of resistors - BBROY of Great Britain had a Very Good Wife or BBROY Goes to Bombay Via Gate Way! Whichever side you're on, you'd better stick to it because BBROY is the guy helping you out in the two rounds of this resistor-filled contest!";
-        String trdpldesc = "We present to you, a man who, along with his band, has performed and enthralled audiences not just in Bengaluru, not just in India, but all across the world! Yes, he's the man who has mesmerized us with songs like ‘Munjaane manjalli’ and ‘Gudugudiya’. We're talking about inimitable, nammellara acchu mecchina RAGHU DIXIT! And we’re just so, so proud to be making this announcement. Make sure you have your seat reserved, because nothing can be more gratifying than having The Raghu Dixit Project perform to a packed audotorium. It's all happening at TATVA 2016! We did say we’re making this Tatva better than ever, didn’t we? See you all there!";
+        String trdpldesc = "We present to you, a man who, along with his band, has performed and enthralled audiences not just in Bengaluru, not just in India, but all across the world! Yes, he's the man who has mesmerized us with songs like ‘Munjaane manjalli’ and ‘Gudugudiya’. We're talking about inimitable, nammellara acchu mecchina RAGHU DIXIT! And we’re just so, so proud to be making this announcement. Make sure you have your seat reserved, because nothing can be more gratifying than having The Raghu Dixit Project perform to a packed auditorium. It's all happening at TATVA 2016! We did say we’re making this Tatva better than ever, didn’t we? See you all there!";
         String hogathondesc = "Eat! Consume! Gobble! Devour! Smack! Crunch! Yum! Gollop! Guzzle! Gulp! Do we need add more? If you've got an appetite that can overtake the food we have on offer, we challenge you to prove it! Come on, you can't say no to food!";
         String gamingConsoledesc = "For the first time ever, BNMIT plays host to console wars! Get ready to play one of the most exciting games on the PlayStation - FIFA 16! You think you can keep up?";
 

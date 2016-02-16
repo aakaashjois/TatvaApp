@@ -7,7 +7,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -25,22 +27,19 @@ public class AboutActivity extends AppCompatActivity {
             getWindow().setNavigationBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
             getWindow().setStatusBarColor(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimaryDark));
         }
-
+        CardView aboutCard = (CardView) findViewById(R.id.aboutCard);
+        aboutCard.setAnimation(AnimationUtils.loadAnimation(this, R.anim.view_up));
         CircleImageView tatvaLogoImageView = (CircleImageView) findViewById(R.id.tatvaLogoImageView);
-
         ImageButton facebookButton = (ImageButton) findViewById(R.id.facebookButton);
         ImageButton instagramButton = (ImageButton) findViewById(R.id.instagramButton);
         ImageButton webButton = (ImageButton) findViewById(R.id.webButton);
         ImageButton playButton = (ImageButton) findViewById(R.id.playButton);
         ImageButton phoneButton = (ImageButton) findViewById(R.id.phoneButton);
-
+        ImageButton mailButton = (ImageButton) findViewById(R.id.mailButton);
         CircleImageView appDevImageView = (CircleImageView) findViewById(R.id.appDevImage);
-
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.appDeveloper);
-
         Glide.with(getApplicationContext()).load(R.drawable.tatva_logo).fitCenter().into(tatvaLogoImageView);
         Glide.with(getApplicationContext()).load(R.drawable.devpic).fitCenter().into(appDevImageView);
-
         facebookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,6 +96,13 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:8147529660")));
+            }
+        });
+
+        mailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(Intent.createChooser(new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:tatva2016@gmail.com")), "Send with"));
             }
         });
 
