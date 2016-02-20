@@ -8,8 +8,8 @@ android {
         applicationId "com.biryanistudio.tatvaapp"
         minSdkVersion 18
         targetSdkVersion 23
-        versionCode 6
-        versionName "1"
+        versionCode 10
+        versionName "4"
     }
     buildTypes {
         release {
@@ -31,4 +31,5 @@ dependencies {
     compile 'com.android.support:support-v4:23.1.1'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'jp.wasabeef:recyclerview-animators:2.2.0'
+    compile 'com.yayandroid:ParallaxRecyclerView:1.0'
 }

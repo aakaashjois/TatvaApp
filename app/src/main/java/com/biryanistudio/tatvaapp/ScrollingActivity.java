@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -16,11 +17,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -69,51 +73,16 @@ public class ScrollingActivity extends AppCompatActivity {
         }
         eventList = (RecyclerView) findViewById(R.id.eventList);
         eventList.setHasFixedSize(true);
-        eventList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        if (isTablet(getApplicationContext()))
+            eventList.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        else
+            eventList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         final RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(eventDataList, getApplicationContext());
         recyclerViewAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
-                Intent intent = new Intent(ScrollingActivity.this, EventActivity.class);
-                int posterid = eventDetailDataList.get(position).posterid;
-                String name = eventDetailDataList.get(position).name;
-                String day = eventDetailDataList.get(position).day;
-                String time = eventDetailDataList.get(position).time;
-                String location = eventDetailDataList.get(position).location;
-                String description = eventDetailDataList.get(position).description;
-                String teammembers = eventDetailDataList.get(position).teammembers;
-                String rate = eventDetailDataList.get(position).rate;
-                String firstPrize = eventDetailDataList.get(position).firstPrize;
-                String secondPrize = eventDetailDataList.get(position).secondPrize;
-                String organizer1 = eventDetailDataList.get(position).organizer1;
-                String organizer2 = eventDetailDataList.get(position).organizer2;
-                String phone1 = eventDetailDataList.get(position).phone1;
-                String phone2 = eventDetailDataList.get(position).phone2;
-                intent.putExtra("posterid", posterid);
-                intent.putExtra("name", name);
-                intent.putExtra("day", day);
-                intent.putExtra("time", time);
-                intent.putExtra("location", location);
-                intent.putExtra("description", description);
-                intent.putExtra("teammembers", teammembers);
-                intent.putExtra("rate", rate);
-                intent.putExtra("firstPrize", firstPrize);
-                intent.putExtra("secondPrize", secondPrize);
-                intent.putExtra("organizer1", organizer1);
-                intent.putExtra("organizer2", organizer2);
-                intent.putExtra("phone1", phone1);
-                intent.putExtra("phone2", phone2);
-
-                CardView cardView = (CardView) view;
-                RelativeLayout relativeLayout = (RelativeLayout) cardView.getChildAt(0);
-                ImageView imageView = (ImageView) relativeLayout.getChildAt(0);
-
-                Pair<View, String> cardPair = Pair.create((View) cardView, "eventCardHolder");
-                Pair<View, String> posterPair = Pair.create((View) imageView, "eventPosterHolder");
-                //noinspection unchecked
-                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ScrollingActivity.this, cardPair, posterPair);
-                ActivityCompat.startActivity(ScrollingActivity.this, intent, activityOptionsCompat.toBundle());
+                displayDetails(view, position);
             }
         });
         eventList.setAdapter(new ScaleInAnimationAdapter(new AlphaInAnimationAdapter(recyclerViewAdapter)));
@@ -136,6 +105,12 @@ public class ScrollingActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean isTablet(Context context) {
+        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
+        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
+        return (xlarge || large);
     }
 
     private void setColors() {
@@ -172,10 +147,94 @@ public class ScrollingActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(final Menu menu) {
         getMenuInflater().inflate(R.menu.menu_scrolling, menu);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView.setIconified(false);
+        searchView.setIconifiedByDefault(true);
+        searchView.clearFocus();
+        searchView.setQueryHint("Event name");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                newText = newText.toLowerCase();
+                List<EventData> filteredList = new ArrayList<>();
+                final ArrayList<Integer> positions = new ArrayList<>();
+                for (int i = 0; i < eventDataList.size(); i++) {
+                    String text = eventDataList.get(i).eventName.toLowerCase();
+                    if (text.contains(newText)) {
+                        filteredList.add(eventDataList.get(i));
+                        positions.add(i);
+                    }
+                }
+
+                RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(filteredList, getApplicationContext());
+                recyclerViewAdapter.SetOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        displayDetails(view, positions.get(position));
+                        searchView.setQuery("", false);
+                        searchView.clearFocus();
+                        MenuItemCompat.collapseActionView(menu.findItem(R.id.action_search));
+
+                    }
+                });
+                eventList.setAdapter(new ScaleInAnimationAdapter(new AlphaInAnimationAdapter(recyclerViewAdapter)));
+                return true;
+            }
+        });
         return true;
     }
+
+    private void displayDetails(View view, int position) {
+
+        Intent intent = new Intent(ScrollingActivity.this, EventActivity.class);
+        int posterid = eventDetailDataList.get(position).posterid;
+        String name = eventDetailDataList.get(position).name;
+        String day = eventDetailDataList.get(position).day;
+        String time = eventDetailDataList.get(position).time;
+        String location = eventDetailDataList.get(position).location;
+        String description = eventDetailDataList.get(position).description;
+        String teammembers = eventDetailDataList.get(position).teammembers;
+        String rate = eventDetailDataList.get(position).rate;
+        String firstPrize = eventDetailDataList.get(position).firstPrize;
+        String secondPrize = eventDetailDataList.get(position).secondPrize;
+        String organizer1 = eventDetailDataList.get(position).organizer1;
+        String organizer2 = eventDetailDataList.get(position).organizer2;
+        String phone1 = eventDetailDataList.get(position).phone1;
+        String phone2 = eventDetailDataList.get(position).phone2;
+        intent.putExtra("posterid", posterid);
+        intent.putExtra("name", name);
+        intent.putExtra("day", day);
+        intent.putExtra("time", time);
+        intent.putExtra("location", location);
+        intent.putExtra("description", description);
+        intent.putExtra("teammembers", teammembers);
+        intent.putExtra("rate", rate);
+        intent.putExtra("firstPrize", firstPrize);
+        intent.putExtra("secondPrize", secondPrize);
+        intent.putExtra("organizer1", organizer1);
+        intent.putExtra("organizer2", organizer2);
+        intent.putExtra("phone1", phone1);
+        intent.putExtra("phone2", phone2);
+
+        CardView cardView = (CardView) view;
+        RelativeLayout relativeLayout = (RelativeLayout) cardView.getChildAt(0);
+        ImageView imageView = (ImageView) relativeLayout.getChildAt(0);
+
+        Pair<View, String> cardPair = Pair.create((View) cardView, "eventCardHolder");
+        Pair<View, String> posterPair = Pair.create((View) imageView, "eventPosterHolder");
+        //noinspection unchecked
+        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(ScrollingActivity.this, cardPair, posterPair);
+        ActivityCompat.startActivity(ScrollingActivity.this, intent, activityOptionsCompat.toBundle());
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -223,14 +282,14 @@ public class ScrollingActivity extends AppCompatActivity {
         String technogenname = "Technogen";
         String circuitDebugname = "Circuit Debugging";
         String corcongname = "Corporate Conglomerate";
-        String mockStockname = "Mock Stock";
-        String treasurehuntname = "Treasure Hunt";
+        String mockStockname = "Mock Stock (Intra)";
+        String treasurehuntname = "Treasure Hunt (Intra)";
         String techjamname = "Tech JAM";
         String techTalkname = "Tech Talk";
         String gamingPCname = "Gaming PC";
         String mockGREname = "Mock GRE";
         String patternprintname = "Pattern Print";
-        String eetm2name = "E=TM2";
+        String eetm2name = "E=TM\u00B2";
         String essencename = "Essence";
         String kartitname = "Kart-it";
         String codingname = "Coding";
@@ -267,7 +326,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String cryptORigdesc = "Sherlock Holmes or Hercule Poirot - is one of them your detective heroes? Do you find it amusing to solve perplexing mysteries? If your answer is yes, sign up for Crypt-o-rig, a mind boggling event (literally!) where participants are required to solve the black box mystery and they, in turn win a clue to the final round with their detective skills. Only, here, it's an exciting walk through circuits and codes!";
         String googleItdesc = "Are you good at googling stuff? Then this is the right event for you! You'll be given an image of a webpage, and you need to find the exact URL of the webpage by using the clues in the image. The team which gets the maximum URLs right out of 15 such questions, will be declared the winner.";
         String chuckGliderdesc = "Chuck gliding. Learn, build and fly your own chuck glider. You will only need your enthusiasm. All materials will be provided with the workshop.";
-        String photographydesc = "Make a statement without saying a word! The participants will be given a topic on the day of the event and they will have to click a picture using DSLR/Digital camera and submit within 3 hours. No post processing will be allowed.";
+        String photographydesc = "Make a statement without saying a word! The participants will be given a topic on the day of the event and they will have to click a picture using DSLR/Digital camera and submit within 6 hours. No post processing will be allowed.";
         String hireFiredesc = "Clearing interviews has never been easy - but we'll make it slightly easier for you! In Hire or Fire, participants will undergo a group discussion round and will have to clear it, following which they will face judges in the Personal Interview round.";
         String rubiksCubedesc = "Cube On 2016, the first ever speed cubing event in Tatva 2016, with WCA recognition. Cubers from all over the country are welcome to showcase their speed cubing skills at this breathtaking event. Age is never a limitation to challenge the world of cubers here. If you're one of those cubers who can solve the Rubik's Cube with ease and are willing to prove your talent by competing with the best cubers in India then join us at Cube On 2016.";
         String bbRoydesc = "An event for the Sherlock \"Ohms\"! There are two kinds of resistors - BBROY of Great Britain had a Very Good Wife or BBROY Goes to Bombay Via Gate Way! Whichever side you're on, you'd better stick to it because BBROY is the guy helping you out in the two rounds of this resistor-filled contest!";
@@ -477,7 +536,7 @@ public class ScrollingActivity extends AppCompatActivity {
         String rubikscubesp = "null";
         String bbroysp = "\u20B91000/team";
         String trdplsp = "null";
-        String hogathonsp = "\u20B91500/team";
+        String hogathonsp = "\u20B91000/team";
         String gamingConsolesp = "\u20B91500/team";
 
         //Organizer1
