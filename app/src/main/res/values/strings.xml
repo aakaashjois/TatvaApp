@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Tatva 2016</string>
     <string name="action_about">About</string>
     <string name="fab_transition">fab_maps</string>
@@ -24,5 +24,383 @@
     <string name="contact_organizer">Contact Organizer</string>
     <string name="second_prize">Second Prize</string>
     <string name="search">Search</string>
+
+    <!--Strings for Event Names-->
+
+    <string name="techDCname">Tech DC</string>
+    <string name="technogenName">Technogen</string>
+    <string name="CircuitDebuggingName">Circuit Debugging</string>
+    <string name="CorCongName">Corporate Conglomerate</string>
+    <string name="mockStockName">Mock Stock (Intra)</string>
+    <string name="treasureHuntName">Treasure Hunt (Intra)</string>
+    <string name="techJAMName">Tech JAM</string>
+    <string name="techTalkName">Tech Talk</string>
+    <string name="gamingPCName">Gaming PC</string>
+    <string name="mockGREName">Mock GRE</string>
+    <string name="patternPrintName">Pattern Print</string>
+    <string name="eeTM2Name">E=TM²</string>
+    <string name="essenceName">Essence</string>
+    <string name="kartItName">Kart-it</string>
+    <string name="codingName">Coding</string>
+    <string name="potporriName">Potpourri</string>
+    <string name="cryptORigName">Crypt-O-Rig</string>
+    <string name="googleItName">Google-it</string>
+    <string name="chuckGliderName">Chuck Glider</string>
+    <string name="photographyName">Photography</string>
+    <string name="hireFireName">Hire/Fire</string>
+    <string name="rubiksCubeName">Cube On 2016</string>
+    <string name="trdplName">The Raghu Dixit Project Live</string>
+    <string name="bbRoyName">BB Roy</string>
+    <string name="hogathonName">Hogathon</string>
+    <string name="gamingConsoleName">Gaming Console</string>
+
+    <!--Strings for Event Descriptions-->
+
+    <string name="techDCDesc">Dumb charades with a twist! Get your team members to guess words you use everyday in your classrooms and labs - and more!</string>
+    <string name="technogenDesc"><![CDATA[A Quiz that will test your IT & General Knowledge trivia thoroughly. With innovative rounds, we promise to make this a technical quiz unlike any other. Will be held in two rounds – written Prelims and a final. 6 teams will make it to the finals from the prelims.]]></string>
+    <string name="circuitDebugDesc">Become the “ter-bug-ator” ! This is an opportunity to showcase your circuit debugging skills by fixing simple bugs in a circuit, thus tweaking your way to victory. It\'s time to brush up on your electronics skills, because the event will have basic and easy rounds that will not require you to scratch that pretty brain of yours!</string>
+    <string name="CorpCongDesc">"A collaboration between David and Goliath! CC is a one-of-a-kind event providing a very realistic idea of how the corporate world works. Teams are divided into councils and assigned with companies accordingly. Giants and Start-ups need to form a symbiotic collaboration, bring out a product and present it.The final round will require the selected teams to face a jury which will decide the ultimate winner. "</string>
+    <string name="mockStockDesc">Are you the Wolf of Wall Street? We\'ve got here an event that tries to emulate a stock market with real time fluctuations in the stock price and news relating to the company. The original companies that we\'ve created and the companies’ details will be given to the contestants on the day of the event.</string>
+    <string name="treasureHuntDesc" tools:ignore="Typos">Captain Jack Sparrow, The Famous Five, Indiana Jones and Robert Langdon all have one thing in common - an uncommon curiosity for hidden treasures! If you\'re the kind that likes solving clues and finding Easter Eggs (wink wink!) and if you think you know BNMIT well enough (or don\'t) you should totally take part in this Around-the-campus-in-60-minutes Amazing Race, crafted exclusively for BNM students!</string>
+    <string name="techTalkDesc">A talk to remember. Participants would be given a published paper in a domain of their choice - EC, CS or Mechanical - a few days before the event and they would have to prepare for it and present it. Basically, participants would be presenting published papers, unless they have published papers of their own, in which case we would be more than happy to let them present it!</string>
+    <string name="techJAMDesc">For people who can rant about Android L and the likes! A panel game in which the contestants are challenged to speak for one minute without hesitation, deviation or repetition of any subject that comes up. The final round is Air Crash, in which contestants will be assigned fun sci-fi characters and will be given their details, and participants would have to justify their survival.</string>
+    <string name="gamingPCDesc">One of the most exciting events of Tatva! The rush of adrenaline and the nail-biting finishes make this one of the most anticipated events. We have classic PC games like Call of Duty, Counter Strike and Need for Speed. Come one, Come all.</string>
+    <string name="mockGREDesc">Planning to chase your dreams? Come take a step forward and give these challenging exams a shot to know where you stand! Tag your friends along to make it more competitive! Exciting cash prizes await the winners!</string>
+    <string name="patternPrintDesc">Print away! Teams will have to create a HackerRank profile. They will be provided with a set of patterns which they have to code in any language of their choice to obtain that pattern as the output.</string>
+    <string name="eeTM2Desc" tools:ignore="Typos">An Entertainment Quiz. TV shows, music and movies. By this, we solemly swear that we\'re upto no good. Why? Cause this is like a box of chocolates. You never know what you\'re gonna get. For this is our design. So you\'d better kick your can all over the place.</string>
+    <string name="essenceDesc">Petrol Heads Unite! This is a quiz about all things fast with four wheels. Test your speed and handling with 2 rounds - Prelims and a finals consisting of 6 teams.</string>
+    <string name="kartItDesc">Want it? KART IT! The participants will be given a set of product images from an e-commerce website. They will have to search for the product on Flipkart using the image given as reference.</string>
+    <string name="codingDesc">Attention Coders! Here\'s a chance for you to test your skills! The first round,has 30 questions to be answered. The second round will have problem statements for which teams have to code to solve it. You can code in any language, as long as you get an output!</string>
+    <string name="potpourriDesc">Dumb Charades, Pictionary and everything else that you do to pass time - think you\'re good at it? Think you can name famous movies and TV Shows and personalities off the top of your head? Then why don\'t you make some money out of it? Tag your friends along and register for a super fun event!</string>
+    <string name="cryptORigDesc">Sherlock Holmes or Hercule Poirot - is one of them your detective heroes? Do you find it amusing to solve perplexing mysteries? If your answer is yes, sign up for Crypt-o-rig, a mind boggling event (literally!) where participants are required to solve the black box mystery and they, in turn win a clue to the final round with their detective skills. Only, here, it\'s an exciting walk through circuits and codes!</string>
+    <string name="googleItDesc">Are you good at googling stuff? Then this is the right event for you! You\'ll be given an image of a webpage, and you need to find the exact URL of the webpage by using the clues in the image. The team which gets the maximum URLs right out of 15 such questions, will be declared the winner.</string>
+    <string name="chuckGliderDesc">Chuck gliding. Learn, build and fly your own chuck glider. You will only need your enthusiasm. All materials will be provided with the workshop.</string>
+    <string name="photographyDesc">Make a statement without saying a word! The participants will be given a topic on the day of the event and they will have to click a picture using DSLR/Digital camera and submit within 6 hours. No post processing will be allowed.</string>
+    <string name="hireFireDesc">Clearing interviews has never been easy - but we\'ll make it slightly easier for you! In Hire or Fire, participants will undergo a group discussion round and will have to clear it, following which they will face judges in the Personal Interview round.</string>
+    <string name="rubiksCubeDesc">Cube On 2016, the first ever speed cubing event in Tatva 2016, with WCA recognition. Cubers from all over the country are welcome to showcase their speed cubing skills at this breathtaking event. Age is never a limitation to challenge the world of cubers here. If you\'re one of those cubers who can solve the Rubik\'s Cube with ease and are willing to prove your talent by competing with the best cubers in India then join us at Cube On 2016.</string>
+    <string name="bbRoyDesc">An event for the Sherlock \"Ohms\"! There are two kinds of resistors - BBROY of Great Britain had a Very Good Wife or BBROY Goes to Bombay Via Gate Way! Whichever side you\'re on, you\'d better stick to it because BBROY is the guy helping you out in the two rounds of this resistor-filled contest!</string>
+    <string name="trdplDesc">We present to you, a man who, along with his band, has performed and enthralled audiences not just in Bengaluru, not just in India, but all across the world! Yes, he\'s the man who has mesmerized us with songs like ‘Munjaane manjalli’ and ‘Gudugudiya’. We\'re talking about inimitable, nammellara acchu mecchina RAGHU DIXIT! And we’re just so, so proud to be making this announcement. Make sure you have your seat reserved, because nothing can be more gratifying than having The Raghu Dixit Project perform to a packed auditorium. It\'s all happening at TATVA 2016! We did say we’re making this Tatva better than ever, didn’t we? See you all there!</string>
+    <string name="hogathonDesc">Eat! Consume! Gobble! Devour! Smack! Crunch! Yum! Gollop! Guzzle! Gulp! Do we need add more? If you\'ve got an appetite that can overtake the food we have on offer, we challenge you to prove it! Come on, you can\'t say no to food!</string>
+    <string name="gamingConsoleDesc">For the first time ever, BNMIT plays host to console wars! Get ready to play one of the most exciting games on the PlayStation - FIFA 16! You think you can keep up?</string>
+
+    <!--String for Event Days-->
+
+    <string name="technogenDay">26th February, 2016</string>
+    <string name="techDCDay">26th February, 2016</string>
+    <string name="patternPrintDay">26th February, 2016</string>
+    <string name="circuitDebugDay">26th February, 2016</string>
+    <string name="techJAMDay">26th February, 2016</string>
+    <string name="techTalkDay">26th February, 2016</string>
+    <string name="corCongDay">26th February, 2016</string>
+    <string name="mockGREDay">26th February, 2016</string>
+    <string name="gamingPCDay">26th February, 2016</string>
+    <string name="mockStockDay">26th February, 2016</string>
+    <string name="treasureHuntDay">26th February, 2016</string>
+    <string name="essenceDay">27th February, 2016</string>
+    <string name="eeTM2Day">27th February, 2016</string>
+    <string name="potpourriDay">27th February, 2016</string>
+    <string name="kartItDay">27th February, 2016</string>
+    <string name="googleItDay">27th February, 2016</string>
+    <string name="hireFireDay">27th February, 2016</string>
+    <string name="photographyDay">27th February, 2016</string>
+    <string name="bbRoyDay">27th February, 2016</string>
+    <string name="cryptORigDay">27th February, 2016</string>
+    <string name="codingDay">27th February, 2016</string>
+    <string name="chuckGliderDay">27th February, 2016</string>
+    <string name="rubiksCubeDay">27th February, 2016</string>
+    <string name="hogathonDay">27th February, 2016</string>
+    <string name="trdplDay">26th February, 2016</string>
+    <string name="gamingConsoleDay">27th February, 2016</string>
+
+    <!--String for Event Time-->
+
+    <string name="technogenTime">9:30 AM</string>
+    <string name="techDCTime">9:30 AM</string>
+    <string name="patternPrintTime">9:30 AM</string>
+    <string name="circuitDebugTime">9:30 AM</string>
+    <string name="techJAMTime">9:30 AM</string>
+    <string name="techTalkTime">9:30 AM</string>
+    <string name="corCongTime">9:30 AM</string>
+    <string name="mockGRETime">9:30 AM</string>
+    <string name="gamingPCTime">9:30 AM</string>
+    <string name="mockStockTime">1:30 PM</string>
+    <string name="treasureHuntTime">3:00 PM</string>
+    <string name="essenceTime">9:30 AM</string>
+    <string name="eeTM2Time">9:30 AM</string>
+    <string name="potpourriTime">9:30 AM</string>
+    <string name="kartItTime">1:30 PM</string>
+    <string name="googleItTime">2:30 PM</string>
+    <string name="hireFireTime">9:30 AM</string>
+    <string name="photographyTime">9:00 AM</string>
+    <string name="bbRoyTime">9:30 AM</string>
+    <string name="cryptORigTime">12:30 PM</string>
+    <string name="codingTime">10:00 AM</string>
+    <string name="chuckGliderTime">9:00 AM</string>
+    <string name="rubiksCubeTime">9:30 AM</string>
+    <string name="hogathonTime">9:30 AM</string>
+    <string name="trdplTime">6:00 PM</string>
+    <string name="gamingConsoleTime">9:30 AM</string>
+
+    <!--String for Event Locations-->
+
+    <string name="technogenLoc">Auditorium, Auditorium Building</string>
+    <string name="techDCLoc">Seminar Hall, Main Building</string>
+    <string name="patternPrintLoc">Labs, Main Building</string>
+    <string name="circuitDebugLoc">Classrooms, New Building</string>
+    <string name="techJAMLoc">Seminar Hall, New Building</string>
+    <string name="techTalkLoc">Classrooms, New Building</string>
+    <string name="corCongLoc">Srushti Sambhrama Hall, Auditorium Building</string>
+    <string name="mockGRELoc">Labs, New Building</string>
+    <string name="gamingPCLoc">Labs, New Building</string>
+    <string name="mockStockLoc">2nd floor Labs, Main Building</string>
+    <string name="treasureHuntLoc">2nd floor Labs, Main Building</string>
+    <string name="essenceLoc">Seminar Hall, New Building</string>
+    <string name="eeTM2Loc">Auditorium, Auditorium Building</string>
+    <string name="potpourriLoc">Seminar Hall, Main Building</string>
+    <string name="kartItLoc">5 labs, Main Building</string>
+    <string name="googleItLoc">5 labs, Main Building</string>
+    <string name="hireFireLoc">classrooms, Auditorium Building</string>
+    <string name="photographyLoc">Complete college campus</string>
+    <string name="bbRoyLoc">2 labs, New Building</string>
+    <string name="cryptORigLoc"><![CDATA[AEC & LD Labs, New Building]]></string>
+    <string name="codingLoc">2 labs, Main Building</string>
+    <string name="chuckGliderLoc">Canteen Area, Auditorium Building</string>
+    <string name="rubiksCubeLoc">Srishti Sambhrama Hall, Auditorium Building</string>
+    <string name="hogathonLoc">Quadrangle, Main Building</string>
+    <string name="trdplLoc">Auditorium, Auditorium Building</string>
+    <string name="gamingConsoleLoc">null</string>
+
+    <!--String for Event Team Members-->
+
+    <string name="techDCTm">Team of 3</string>
+    <string name="technogenTm">Team of 3</string>
+    <string name="circuitDebugTm">Team of 2</string>
+    <string name="corCongTm">Team of 2</string>
+    <string name="mockStockTm">Team of 2</string>
+    <string name="treasureHuntTm">Team of 3</string>
+    <string name="techJAMTm">Team of 1</string>
+    <string name="techTalkTm">Team of 1</string>
+    <string name="gamingPCTm">NFS: Team of 1\nCoD: Team of 4\nCS: Team of 4</string>
+    <string name="mockGRETm">Team of 1</string>
+    <string name="patternPrintTm">Team of 2</string>
+    <string name="eeTM2Tm">Team of 2</string>
+    <string name="essenceTm">Team of 2</string>
+    <string name="kartItTm">Team of 2</string>
+    <string name="codingTm">Team of 2</string>
+    <string name="potpourriTm">Team of 3</string>
+    <string name="cryptORigTm">Team of 2</string>
+    <string name="googleItTm">Team of 2</string>
+    <string name="chuckGliderTm">Team of 2 to 4</string>
+    <string name="photographyTm">Team of 1</string>
+    <string name="hireFireTm">Team of 1</string>
+    <string name="rubiksCubeTm">Team of 1</string>
+    <string name="bbRoyTm">Team of 2</string>
+    <string name="trdplTm">null</string>
+    <string name="hogathonTm">Team of 1</string>
+    <string name="gamingConsoleTm">Team of 1</string>
+
+    <!--String for Event Ticket Rates-->
+
+    <string name="techDCTr">₹90/team</string>
+    <string name="technogenTr">₹120/team</string>
+    <string name="circuitDebugTr">₹60/team</string>
+    <string name="corCongTr">₹100/team</string>
+    <string name="mockStockTr">₹80/team</string>
+    <string name="treasureHuntTr">₹120/team</string>
+    <string name="techJAMTr">₹60/team</string>
+    <string name="techTalkTr">₹80/team</string>
+    <string name="gamingPCTr">NFS: ₹50/team\nCoD: ₹200/team\nCS: ₹200/team</string>
+    <string name="mockGRETr">₹100/team</string>
+    <string name="patternPrintTr">₹60/team</string>
+    <string name="eeTM2Tr">₹80/team</string>
+    <string name="essenceTr">₹80/team</string>
+    <string name="kartItTr">₹60/team</string>
+    <string name="codingTr">₹100/team</string>
+    <string name="potpourriTr">₹120/team</string>
+    <string name="cryptORigTr">₹60/team</string>
+    <string name="googleItTr">₹60/team</string>
+    <string name="chuckGliderTr">₹400/team</string>
+    <string name="photographyTr">Professional: ₹100/team\nAmateur: ₹70/team</string>
+    <string name="hireFireTr">₹50/team</string>
+    <string name="rubiksCubeTr">Register at: scmustore.com/cubeon2016</string>
+    <string name="bbRoyTr">₹60/team</string>
+    <string name="trdplTr">null</string>
+    <string name="hogathonTr">₹60/team</string>
+    <string name="gamingConsoleTr">FIFA 16 PS4: ₹100/team</string>
+
+    <!--String for Event First Prize-->
+
+    <string name="techDCFp">₹3000/team</string>
+    <string name="technogenFp">₹3000/team</string>
+    <string name="circuitDebugFp">₹2000/team</string>
+    <string name="corCongFp">₹4000/team</string>
+    <string name="mockStockFp">₹2000/team</string>
+    <string name="treasureHuntFp">₹3000/team</string>
+    <string name="techJAMFp">₹2000/team</string>
+    <string name="techTalkFp">₹2000/team</string>
+    <string name="gamingPCFp">NFS: ₹2000/team\nCoD: ₹4000/team\nCS: ₹4000/team</string>
+    <string name="mockGREFp">₹2000/team</string>
+    <string name="patternPrintFp">₹2000/team</string>
+    <string name="eeTM2Fp">₹3000/team</string>
+    <string name="essenceFp">₹2000/team</string>
+    <string name="kartItFp">₹2000/team</string>
+    <string name="codingFp">₹3000/team</string>
+    <string name="potpourriFp">₹3000/team</string>
+    <string name="cryptORigFp">₹2000/team</string>
+    <string name="googleItFp">₹3000/team</string>
+    <string name="chuckGliderFp">₹4000/team</string>
+    <string name="photographyFp">"Professional: ₹2000/team\nAmateur:₹1500/team "</string>
+    <string name="hireFireFp">₹2000/team</string>
+    <string name="rubiksCubeFp">null</string>
+    <string name="bbRoyFp">₹2000/team</string>
+    <string name="trdplFp">null</string>
+    <string name="hogathonFp">₹3000/team</string>
+    <string name="gamingConsoleFp">₹3000/team</string>
+
+    <!--String for Event Second Price-->
+
+    <string name="techDCSp">₹1500/team</string>
+    <string name="technogenSp">₹1500/team</string>
+    <string name="circuitDebugSp">₹1000/team</string>
+    <string name="corCongSp">₹2000/team</string>
+    <string name="mockStockSp">₹1000/team</string>
+    <string name="treasureHuntSp">₹1500/team</string>
+    <string name="techJAMSp">₹1000/team</string>
+    <string name="techTalkSp">₹1000/team</string>
+    <string name="gamingPCSp">NFS: ₹1000/team\nCoD: ₹2000/team\nCS: ₹2000/team</string>
+    <string name="mockGRESp">₹1000/team</string>
+    <string name="patternPrintSp">₹1000/team</string>
+    <string name="eeTM2Sp">₹1500/team</string>
+    <string name="essenceSp">₹1000/team</string>
+    <string name="kartItSp">₹1000/team</string>
+    <string name="codingSp">₹1500/team</string>
+    <string name="potpourriSp">₹1500/team</string>
+    <string name="cryptORigSp">₹1000/team</string>
+    <string name="googleItSp">₹1500/team</string>
+    <string name="chuckGliderSp">₹2000/team</string>
+    <string name="photographySp">Professional: ₹1000/team\nAmateur: ₹800/team</string>
+    <string name="hireFireSp">₹1000/team</string>
+    <string name="rubiksCubeSp">null</string>
+    <string name="bbRoySp">₹1000/team</string>
+    <string name="trdplSp">null</string>
+    <string name="hogathonSp">₹1000/team</string>
+    <string name="gamingConsoleSp">₹1500/team</string>
+
+    <!--String for Event Organizer 1-->
+
+    <string name="techDCO1">Vidya</string>
+    <string name="technogenO1">Varun</string>
+    <string name="circuitDebugO1">Karthik</string>
+    <string name="corCongO1">Keerthan</string>
+    <string name="mockStockO1">Shreyas</string>
+    <string name="treasureHuntO1">Kirthan</string>
+    <string name="techJAMO1">Suhas</string>
+    <string name="techTalkO1">Sharanya</string>
+    <string name="gamingPCO1">Shrey</string>
+    <string name="mockGREO1">Vidya</string>
+    <string name="patternPrintO1">Sugosh</string>
+    <string name="eeTNM2O1">Gayathri</string>
+    <string name="essenceO1">Tejas</string>
+    <string name="kartItO1">Pranav</string>
+    <string name="codingO1">Sugosh</string>
+    <string name="potpourriO1">Tejaswini</string>
+    <string name="cryptORigO1">Bindhiya Shree</string>
+    <string name="googleItO1">Kirthan</string>
+    <string name="chuckGliderO1">Rajat</string>
+    <string name="photographyO1">Pranav</string>
+    <string name="hireFireO1">MBA Department</string>
+    <string name="rubiksCubeO1">Karan</string>
+    <string name="bbRoyO1">Amulya</string>
+    <string name="trdplO1">Akshara</string>
+    <string name="hogathonO1">Joshua</string>
+    <string name="gamingConsoleO1">Shrey</string>
+
+    <!--String for Event Organizer 2-->
+
+    <string name="techDCO2">Sthuthie</string>
+    <string name="technogenO2">Suraj</string>
+    <string name="circuitDebuggingO2">Vinayak</string>
+    <string name="corCongO2">Gaurav</string>
+    <string name="mockStockO2">Anand</string>
+    <string name="treasureHuntO2">Anasuya</string>
+    <string name="techJAMO2">Srinidhi</string>
+    <string name="techTalkO2">Shwetha</string>
+    <string name="gamingPCO2">Nayan</string>
+    <string name="mockGREO2">null</string>
+    <string name="patternPrintO2">Dheeraj</string>
+    <string name="eeTM2O2">null</string>
+    <string name="essenceO2">Sudeep</string>
+    <string name="kartItO2">Meghana</string>
+    <string name="codingO2">null</string>
+    <string name="potpourriO2">Suhas</string>
+    <string name="cryptORigO2">Harshapriya</string>
+    <string name="googleItO2">Akshatha</string>
+    <string name="chuckGliderO2">Aditi</string>
+    <string name="photographyO2">Aakaash</string>
+    <string name="hireFireO2">null</string>
+    <string name="rubiksCubeO2">null</string>
+    <string name="bbRoyO2">Ranjitha</string>
+    <string name="trdplO2">Passes</string>
+    <string name="hogathonO2">Maaz</string>
+    <string name="gamingConsoleO2">null</string>
+
+    <!--String for Event Phone 1-->
+
+    <string name="techDCP1">9535693620</string>
+    <string name="technogenP1">8861469332</string>
+    <string name="circuitDebugP1">8861670102</string>
+    <string name="corCongP1">9845041734</string>
+    <string name="mockStockP1">9880085543</string>
+    <string name="treasureHuntP1">8123995823</string>
+    <string name="techJAMP1">9538946191</string>
+    <string name="techTalkP1">9916841248</string>
+    <string name="gamingPCP1">8867580816</string>
+    <string name="mockGREP1">9916438368</string>
+    <string name="patternPrintP1">9880085543</string>
+    <string name="eeTM2P1">9538941398</string>
+    <string name="essenceP1">9035211489</string>
+    <string name="kartItP1">8884716101</string>
+    <string name="codingP1">9880085543</string>
+    <string name="potpourriP1">9019985291</string>
+    <string name="cryptORigP1">9035184719</string>
+    <string name="googleItP1">8123995823</string>
+    <string name="chuckGliderP1">null</string>
+    <string name="photographyP1">8884716101</string>
+    <string name="hireFireP1">null</string>
+    <string name="rubiksCubeP1">8197526224</string>
+    <string name="bbRoyP1">9482480881</string>
+    <string name="trdplP1">9686597805</string>
+    <string name="hogathonP1">8904448086</string>
+    <string name="gamingConsoleP1">8867580816</string>
+
+    <!--String for Event Phone 2-->
+
+    <string name="techDCP2">9845772581</string>
+    <string name="technogenP2">9886107706</string>
+    <string name="circuitDebugP2">8147162287</string>
+    <string name="corCongP2">7795583007</string>
+    <string name="mockStockP2">8861469332</string>
+    <string name="treasureHuntP2">9632508127</string>
+    <string name="techJAMP2">8970970532</string>
+    <string name="techtalkP2">8861606232</string>
+    <string name="gamingPCP2">null</string>
+    <string name="mockGREP2">9480951582</string>
+    <string name="patternPrintP2">9483918712</string>
+    <string name="eeTM2P2">null</string>
+    <string name="essenceP2">9538213512</string>
+    <string name="kartItP2">8105092894</string>
+    <string name="codingP2">null</string>
+    <string name="potpourriP2">9620080778</string>
+    <string name="cryptORigP2">9986956094</string>
+    <string name="googleItP2">null</string>
+    <string name="chuckGliderP2">null</string>
+    <string name="photographyP2">9902512464</string>
+    <string name="hireFireP2">null</string>
+    <string name="rubiksCubeP2">null</string>
+    <string name="bbRoyP2">9880783959</string>
+    <string name="trdplP2">8147529660</string>
+    <string name="hogathonP2">null</string>
+    <string name="gamingConsoleP2">8867580816</string>
+
 
 </resources>
