@@ -1,5 +1,6 @@
 package com.biryanistudio.tatvaapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -62,6 +64,7 @@ public class EventActivity extends AppCompatActivity {
         LinearLayout layoutSecondPrize = (LinearLayout) findViewById(R.id.layoutSecondPrize);
         final CoordinatorLayout eventCoordinatorLayout = (CoordinatorLayout) findViewById(R.id.eventCoordinatorLayout);
         final LinearLayout layoutCardViewHolder = (LinearLayout) findViewById(R.id.cardViewHolder);
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             eventCard.setTransitionName("eventCardHolder");
@@ -139,9 +142,7 @@ public class EventActivity extends AppCompatActivity {
             eventPhone1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent1 = new Intent(Intent.ACTION_DIAL);
-                    intent1.setData(Uri.parse("tel:" + phone1));
-                    startActivity(intent1);
+                    startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone1)), null));
                 }
             });
         else
@@ -151,12 +152,11 @@ public class EventActivity extends AppCompatActivity {
             eventPhone2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent2 = new Intent(Intent.ACTION_DIAL);
-                    intent2.setData(Uri.parse("tel:" + phone2));
-                    startActivity(intent2);
+                    startActivity(Intent.createChooser(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone2)), null));
                 }
             });
         else
             eventPhone2.setVisibility(View.INVISIBLE);
+
     }
 }

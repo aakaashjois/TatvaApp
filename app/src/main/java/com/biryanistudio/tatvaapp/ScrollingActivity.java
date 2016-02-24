@@ -85,9 +85,8 @@ public class ScrollingActivity extends AppCompatActivity {
                 displayDetails(view, position);
             }
         });
-        eventList.setAdapter(new ScaleInAnimationAdapter(new AlphaInAnimationAdapter(recyclerViewAdapter)));
+        eventList.setAdapter(new ScaleInAnimationAdapter(recyclerViewAdapter));
         eventList.startAnimation(AnimationUtils.loadAnimation(this, R.anim.view_up));
-        collapsingToolbarLayout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.view_up));
 
         fab.setVisibility(View.INVISIBLE);
         if ((ContextCompat.checkSelfPermission(ScrollingActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
@@ -286,7 +285,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntname = getString(R.string.treasureHuntName);
         String techjamname = getString(R.string.techJAMName);
         String techTalkname = getString(R.string.techTalkName);
-        String gamingPCname = getString(R.string.gamingPCName);
+        String gamingNFSname = getString(R.string.gamingNFSName);
+        String gamingCSname = getString(R.string.gamingCSName);
+        String gamingCODname = getString(R.string.gamingCODName);
         String mockGREname = getString(R.string.mockGREName);
         String patternprintname = getString(R.string.patternPrintName);
         String eetm2name = getString(R.string.eeTM2Name);
@@ -315,7 +316,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasureHuntdesc = getString(R.string.treasureHuntDesc);
         String techTalkdesc = getString(R.string.techTalkDesc);
         String techjamMdesc = getString(R.string.techJAMDesc);
-        String gamingPCdesc = getString(R.string.gamingPCDesc);
+        String gamingNFSdesc = getString(R.string.gamingPCDesc);
+        String gamingCSdesc = getString(R.string.gamingPCDesc);
+        String gamingCODdesc = getString(R.string.gamingPCDesc);
         String mockGREdesc = getString(R.string.mockGREDesc);
         String patternPrintdesc = getString(R.string.patternPrintDesc);
         String eETM2desc = getString(R.string.eeTM2Desc);
@@ -344,7 +347,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String techtalkday = getString(R.string.techTalkDay);
         String corcongday = getString(R.string.corCongDay);
         String mockgreday = getString(R.string.mockGREDay);
-        String gamingPCday = getString(R.string.gamingPCDay);
+        String gamingNFSday = getString(R.string.gamingNFSDay);
+        String gamingCSday = getString(R.string.gamingCSDay);
+        String gamingCODday = getString(R.string.gamingCODDay);
         String mockstockday = getString(R.string.mockStockDay);
         String treasurehuntday = getString(R.string.treasureHuntDay);
         String essenceday = getString(R.string.essenceDay);
@@ -373,7 +378,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String techtalktime = getString(R.string.techTalkTime);
         String corcongtime = getString(R.string.corCongTime);
         String mockgretime = getString(R.string.mockGRETime);
-        String gamingPCtime = getString(R.string.gamingPCTime);
+        String gamingNFStime = getString(R.string.gamingNFSTime);
+        String gamingCStime = getString(R.string.gamingCSTime);
+        String gamingCODtime = getString(R.string.gamingCODTime);
         String mockstocktime = getString(R.string.mockStockTime);
         String treasurehunttime = getString(R.string.treasureHuntTime);
         String essencetime = getString(R.string.essenceTime);
@@ -402,7 +409,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String techtalkloc = getString(R.string.techTalkLoc);
         String corcongloc = getString(R.string.corCongLoc);
         String mockgreloc = getString(R.string.mockGRELoc);
-        String gamingPCloc = getString(R.string.gamingPCLoc);
+        String gamingNFSloc = getString(R.string.gamingNFSLoc);
+        String gamingCSloc = getString(R.string.gamingCSLoc);
+        String gamingCODloc = getString(R.string.gamingCODLoc);
         String mockstockloc = getString(R.string.mockStockLoc);
         String treasurehuntloc = getString(R.string.treasureHuntLoc);
         String essenceloc = getString(R.string.essenceLoc);
@@ -431,7 +440,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehunttm = getString(R.string.treasureHuntTm);
         String techjamtm = getString(R.string.techJAMTm);
         String techtalktm = getString(R.string.techTalkTm);
-        String gamingPCtm = getString(R.string.gamingPCTm);
+        String gamingNFStm = getString(R.string.gamingNFSTm);
+        String gamingCStm = getString(R.string.gamingCSTm);
+        String gamingCODtm = getString(R.string.gamingCODTm);
         String mockgretm = getString(R.string.mockGRETm);
         String patternprinttm = getString(R.string.patternPrintTm);
         String eetm2tm = getString(R.string.eeTM2Tm);
@@ -460,7 +471,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehunttr = getString(R.string.treasureHuntTr);
         String techjamtr = getString(R.string.techJAMTr);
         String techtalktr = getString(R.string.techTalkTr);
-        String gamingPCtr = getString(R.string.gamingPCTr);
+        String gamingNFStr = getString(R.string.gamingNFSTr);
+        String gamingCStr = getString(R.string.gamingCSTr);
+        String gamingCODtr = getString(R.string.gamingCODTr);
         String mockgretr = getString(R.string.mockGRETr);
         String patternprinttr = getString(R.string.patternPrintTr);
         String eetm2tr = getString(R.string.eeTM2Tr);
@@ -489,7 +502,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntfp = getString(R.string.treasureHuntFp);
         String techjamfp = getString(R.string.techJAMFp);
         String techtalkfp = getString(R.string.techTalkFp);
-        String gamingPCfp = getString(R.string.gamingPCFp);
+        String gamingNFSfp = getString(R.string.gamingNFSFp);
+        String gamingCSfp = getString(R.string.gamingCSFp);
+        String gamingCODfp = getString(R.string.gamingCODFp);
         String mockgrefp = getString(R.string.mockGREFp);
         String patternprintfp = getString(R.string.patternPrintFp);
         String eetm2fp = getString(R.string.eeTM2Fp);
@@ -518,7 +533,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntsp = getString(R.string.treasureHuntSp);
         String techjamsp = getString(R.string.techJAMSp);
         String techtalksp = getString(R.string.techTalkSp);
-        String gamingPCsp = getString(R.string.gamingPCSp);
+        String gamingNFSsp = getString(R.string.gamingNFSSp);
+        String gamingCSsp = getString(R.string.gamingCSSp);
+        String gamingCODsp = getString(R.string.gamingCODSp);
         String mockgresp = getString(R.string.mockGRESp);
         String patternprintsp = getString(R.string.patternPrintSp);
         String eetm2sp = getString(R.string.eeTM2Sp);
@@ -547,7 +564,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehunto1 = getString(R.string.treasureHuntO1);
         String techjamo1 = getString(R.string.techJAMO1);
         String techtalko1 = getString(R.string.techTalkO1);
-        String gamingPCo1 = getString(R.string.gamingPCO1);
+        String gamingNFSo1 = getString(R.string.gamingNFSO1);
+        String gamingCSo1 = getString(R.string.gamingCSO1);
+        String gamingCODo1 = getString(R.string.gamingCODO1);
         String mockgreo1 = getString(R.string.mockGREO1);
         String patternprinto1 = getString(R.string.patternPrintO1);
         String eetm2o1 = getString(R.string.eeTNM2O1);
@@ -576,7 +595,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehunto2 = getString(R.string.treasureHuntO2);
         String techjamo2 = getString(R.string.techJAMO2);
         String techtalko2 = getString(R.string.techTalkO2);
-        String gamingPCo2 = getString(R.string.gamingPCO2);
+        String gamingNFSo2 = getString(R.string.gamingNFSO2);
+        String gamingCSo2 = getString(R.string.gamingCSO2);
+        String gamingCODo2 = getString(R.string.gamingCODO2);
         String mockgreo2 = getString(R.string.mockGREO2);
         String patternprinto2 = getString(R.string.patternPrintO2);
         String eetm2o2 = getString(R.string.eeTM2O2);
@@ -605,7 +626,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntp1 = getString(R.string.treasureHuntP1);
         String techjamp1 = getString(R.string.techJAMP1);
         String techtalkp1 = getString(R.string.techTalkP1);
-        String gamingPCp1 = getString(R.string.gamingPCP1);
+        String gamingNFSp1 = getString(R.string.gamingNFSP1);
+        String gamingCSp1 = getString(R.string.gamingCSP1);
+        String gamingCODp1 = getString(R.string.gamingCODP1);
         String mockgrep1 = getString(R.string.mockGREP1);
         String patternprintp1 = getString(R.string.patternPrintP1);
         String eetm2p1 = getString(R.string.eeTM2P1);
@@ -634,7 +657,9 @@ public class ScrollingActivity extends AppCompatActivity {
         String treasurehuntp2 = getString(R.string.treasureHuntP2);
         String techjamp2 = getString(R.string.techJAMP2);
         String techtalkp2 = getString(R.string.techtalkP2);
-        String gamingPCp2 = getString(R.string.gamingPCP2);
+        String gamingNFSp2 = getString(R.string.gamingNFSP2);
+        String gamingCSp2 = getString(R.string.gamingCSP2);
+        String gamingCODp2 = getString(R.string.gamingCODP2);
         String mockgrep2 = getString(R.string.mockGREP2);
         String patternprintp2 = getString(R.string.patternPrintP2);
         String eetm2p2 = getString(R.string.eeTM2P2);
@@ -663,7 +688,9 @@ public class ScrollingActivity extends AppCompatActivity {
         int treasurehuntpi = R.drawable.treasurehunt;
         int techjampi = R.drawable.techjam;
         int techtalkpi = R.drawable.techtalk;
-        int gamingPCpi = R.drawable.gaming;
+        int gamingNFSpi = R.drawable.gaming;
+        int gamingCSpi = R.drawable.gaming;
+        int gamingCODpi = R.drawable.gaming;
         int mockgrepi = R.drawable.mockgre;
         int patternprintpi = R.drawable.patternprint;
         int eetm2pi = R.drawable.eetm2;
@@ -692,7 +719,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
         eventDetailDataList.add(new EventDetailData(circuitdebugpi, circuitDebugname, circuitdebugday, circuitdebugtime, circuitdebugloc, circuitDebugdesc, circuitdebugtm, circuitdebugtr, circuitdebugfp, circuitdebugsp, circuitdebugo1, circuitdebugo2, circuitdebugp1, circuitdebugp2));
         eventDetailDataList.add(new EventDetailData(corcongpi, corcongname, corcongday, corcongtime, corcongloc, corporateCongdesc, corcongtm, corcongtr, corcongfp, corcongsp, corcongo1, corcongo2, corcongp1, corcongp2));
-        eventDetailDataList.add(new EventDetailData(gamingPCpi, gamingPCname, gamingPCday, gamingPCtime, gamingPCloc, gamingPCdesc, gamingPCtm, gamingPCtr, gamingPCfp, gamingPCsp, gamingPCo1, gamingPCo2, gamingPCp1, gamingPCp2));
+        eventDetailDataList.add(new EventDetailData(gamingNFSpi, gamingNFSname, gamingNFSday, gamingNFStime, gamingNFSloc, gamingNFSdesc, gamingNFStm, gamingNFStr, gamingNFSfp, gamingNFSsp, gamingNFSo1, gamingNFSo2, gamingNFSp1, gamingNFSp2));
+        eventDetailDataList.add(new EventDetailData(gamingCSpi, gamingCSname, gamingCSday, gamingCStime, gamingCSloc, gamingCSdesc, gamingCStm, gamingCStr, gamingCSfp, gamingCSsp, gamingCSo1, gamingCSo2, gamingCSp1, gamingCSp2));
+        eventDetailDataList.add(new EventDetailData(gamingCODpi, gamingCODname, gamingCODday, gamingCODtime, gamingCODloc, gamingCODdesc, gamingCODtm, gamingCODtr, gamingCODfp, gamingCODsp, gamingCODo1, gamingCODo2, gamingCODp1, gamingCODp2));
         eventDetailDataList.add(new EventDetailData(mockgrepi, mockGREname, mockgreday, mockgretime, mockgreloc, mockGREdesc, mockgretm, mockgretr, mockgrefp, mockgresp, mockgreo1, mockgreo2, mockgrep1, mockgrep2));
         eventDetailDataList.add(new EventDetailData(mockstockpi, mockStockname, mockstockday, mockstocktime, mockstockloc, mockStockdesc, mockstocktm, mockstocktr, mockstockfp, mockstocksp, mockstocko1, mockstocko2, mockstockp1, mockstockp2));
         eventDetailDataList.add(new EventDetailData(patternprintpi, patternprintname, patternprintday, patternprinttime, patternprintloc, patternPrintdesc, patternprinttm, patternprinttr, patternprintfp, patternprintsp, patternprinto1, patternprinto2, patternprintp1, patternprintp2));
@@ -727,7 +756,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
         eventDataList.add(new EventData(circuitDebugname, (circuitdebugday + " " + circuitdebugtime), circuitdebugpi));
         eventDataList.add(new EventData(corcongname, (corcongday + " " + corcongtime), corcongpi));
-        eventDataList.add(new EventData(gamingPCname, (gamingPCday + " " + gamingPCtime), gamingPCpi));
+        eventDataList.add(new EventData(gamingNFSname, (gamingNFSday + " " + gamingNFStime), gamingNFSpi));
+        eventDataList.add(new EventData(gamingCSname, (gamingCSday + " " + gamingCStime), gamingCSpi));
+        eventDataList.add(new EventData(gamingCODname, (gamingCODday + " " + gamingCODtime), gamingCODpi));
         eventDataList.add(new EventData(mockGREname, (mockgreday + " " + mockgretime), mockgrepi));
         eventDataList.add(new EventData(mockStockname, (mockstockday + " " + mockstocktime), mockstockpi));
         eventDataList.add(new EventData(patternprintname, (patternprintday + " " + patternprinttime), patternprintpi));
